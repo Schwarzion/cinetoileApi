@@ -30,7 +30,7 @@ public class User {
     private Timestamp updatedAt;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     public int getId() {
         return id;
     }
