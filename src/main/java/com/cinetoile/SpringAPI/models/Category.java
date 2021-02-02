@@ -1,15 +1,21 @@
 package com.cinetoile.SpringAPI.models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name="Category")
 public class Category {
-    private int id;
+    private @Id @GeneratedValue int id;
     private String name;
+
+    Category() {}
+
+    Category(String name){
+        this.name = name;
+    }
 
     @Id
     @Column(name = "id", nullable = false)

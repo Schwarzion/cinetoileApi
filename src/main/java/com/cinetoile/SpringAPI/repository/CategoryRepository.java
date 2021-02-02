@@ -1,9 +1,9 @@
 package com.cinetoile.SpringAPI.repository;
 
-import com.cinetoile.SpringAPI.models.Reservation;
+import com.cinetoile.SpringAPI.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }
