@@ -1,9 +1,7 @@
 package com.cinetoile.SpringAPI.Dto;
-import java.util.List;
-import java.util.Map;
 
 
-class categoryDTO {
+class CategoryDTO {
 
     Integer id;
 
