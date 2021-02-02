@@ -19,7 +19,7 @@
 Configure your SQL credentials and your JDBC path in `/src/main/resources/application.properties`
 
 To start the server, go in the project root directory and run `./gradlew bootRun`
-#####OR
+
 Open the folder with IntelliJ or Eclipse and run the project
 
 
