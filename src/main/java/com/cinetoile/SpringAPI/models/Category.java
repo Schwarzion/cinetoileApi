@@ -11,9 +11,9 @@ public class Category {
     private @Id @GeneratedValue int id;
     private String name;
 
-    Category() {}
+    public Category() {}
 
-    Category(String name){
+    public Category(String name){
         this.name = name;
     }
 

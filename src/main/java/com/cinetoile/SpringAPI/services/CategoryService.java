@@ -33,7 +33,7 @@ public class CategoryService {
             return repository.save(newCategory);
         });
     }
-    public void delete(@PathVariable Integer id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 }
