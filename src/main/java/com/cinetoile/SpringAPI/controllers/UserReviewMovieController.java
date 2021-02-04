@@ -4,7 +4,7 @@ import com.cinetoile.SpringAPI.dto.In.UserReviewMovieDTOIn;
 import com.cinetoile.SpringAPI.models.UserReviewMovieEntity;
 import com.cinetoile.SpringAPI.services.UserReviewMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.cinetoile.SpringAPI.Dto.Out.UserReviewMovieDTOOut;
+import com.cinetoile.SpringAPI.dto.Out.UserReviewMovieDTOOut;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
