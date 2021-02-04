@@ -1,12 +1,11 @@
 package com.cinetoile.SpringAPI.models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Movie {
@@ -204,4 +203,11 @@ public class Movie {
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
+
+    //Relations
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "category",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id"))
+    List<Category> categories;
 }

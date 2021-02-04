@@ -4,7 +4,6 @@ import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.models.Category;
 import com.cinetoile.SpringAPI.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
