@@ -16,13 +16,13 @@ public class UserService {
 
     public List<User> findAll() { return repository.findAll();}
 
-    public User addUser(User newUser) { return repository.save(newUser);}
-
     public User findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("user", id));
     }
 
-    public User replaceUser(User newUser, Integer id) {
+    public User add(User newUser) { return repository.save(newUser);}
+
+    public User update(User newUser, Integer id) {
         return repository.findById(id).map(user -> {
             user.setBirthdate(newUser.getBirthdate());
             user.setFirstname(newUser.getFirstname());
@@ -43,6 +43,6 @@ public class UserService {
         });
     }
 
-    public void deleteUser(Integer id) { repository.deleteById(id);}
+    public void delete(Integer id) { repository.deleteById(id);}
 }
 

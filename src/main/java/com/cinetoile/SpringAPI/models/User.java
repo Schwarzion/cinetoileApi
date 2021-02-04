@@ -15,7 +15,7 @@ import java.util.Objects;
 @Table(name="User")
 
 public class User {
-    private int id;
+    private @Id @GeneratedValue int id;
     private String firstname;
     private String lastname;
     private String city;
