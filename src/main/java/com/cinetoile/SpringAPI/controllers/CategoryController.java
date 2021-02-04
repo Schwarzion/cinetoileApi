@@ -1,6 +1,8 @@
 package com.cinetoile.SpringAPI.controllers;
 
 import com.cinetoile.SpringAPI.models.Category;
+import com.cinetoile.SpringAPI.repository.CategoryRepository;
+import com.cinetoile.SpringAPI.repository.MovieRepository;
 import com.cinetoile.SpringAPI.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +13,9 @@ import java.util.List;
 @RestController
 public class CategoryController {
 
-    private final CategoryService categoryService;
 
+    private final CategoryService categoryService;
+    
     @Autowired
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
@@ -27,8 +30,8 @@ public class CategoryController {
     }
 
     @PostMapping("/category")
-    void add(@RequestBody Category newCategory) {
-        this.categoryService.add(newCategory);
+    Category add(@RequestBody Category newCategory) {
+        return this.categoryService.add(newCategory);
     }
 
     @PutMapping("category/{id}")
@@ -39,5 +42,10 @@ public class CategoryController {
     @DeleteMapping("/category/{id}")
     void delete(@PathVariable Integer id) {
         this.categoryService.delete(id);
+    }
+
+    @GetMapping("/movies/category/{movieId}")
+    Category getMovieCategories(@PathVariable Integer movieId) {
+        return this.categoryService.find(movieId);
     }
 }
