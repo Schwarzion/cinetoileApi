@@ -1,5 +1,6 @@
 package com.cinetoile.SpringAPI.models;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.type.BlobType;
@@ -10,8 +11,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name="User")
 
 public class User {
@@ -31,6 +31,7 @@ public class User {
 
     @Id
     @Column(name = "id", nullable = false, updatable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public int getId() {
         return id;
     }

@@ -1,45 +1,23 @@
 package com.cinetoile.SpringAPI.models;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Data
 public class UserReviewMoviePK implements Serializable {
+    @Id
     private int movieId;
+    @Id
     private int userId;
 
-    @Column(name = "movieId", nullable = false)
-    @Id
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
+    public UserReviewMoviePK(int movieId, int userId) {
         this.movieId = movieId;
-    }
-
-    @Column(name = "userId", nullable = false)
-    @Id
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserReviewMoviePK that = (UserReviewMoviePK) o;
-        return movieId == that.movieId &&
-                userId == that.userId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(movieId, userId);
     }
 }
