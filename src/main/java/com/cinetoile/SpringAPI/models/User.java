@@ -5,8 +5,8 @@ import lombok.Setter;
 import org.hibernate.type.BlobType;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -183,4 +183,7 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, firstname, lastname, city, postalCode, birthdate, status, phone, mail, password, image, createdAt, updatedAt);
     }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "User")
+    private Collection<UserReviewMovie> userReviewMovie;
 }

@@ -16,6 +16,9 @@ public class UserReviewMovie {
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
+    @EmbeddedId
+    protected UserReviewMoviePK userReviewMoviePK;
+
     @Id
     @Column(name = "movieId", nullable = false)
     public int getMovieId() {
@@ -85,6 +88,14 @@ public class UserReviewMovie {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    @JoinColumn(name = "movieId", referencedColumnName = "movieId", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Movie movie;
+
+    @JoinColumn(name = "userId", referencedColumnName = "userId", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private User user;
 
     @Override
     public boolean equals(Object o) {

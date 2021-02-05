@@ -1,11 +1,9 @@
 package com.cinetoile.SpringAPI.models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -204,4 +202,7 @@ public class Movie {
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Movie")
+    private Collection<UserReviewMovie> userReviewMovie;
 }

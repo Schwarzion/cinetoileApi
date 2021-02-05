@@ -2,6 +2,7 @@ package com.cinetoile.SpringAPI.models;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.Objects;
 
