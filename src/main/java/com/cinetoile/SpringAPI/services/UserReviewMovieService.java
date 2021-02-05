@@ -1,6 +1,5 @@
 package com.cinetoile.SpringAPI.services;
 
-
 import com.cinetoile.SpringAPI.DtoThatWillBeMoved.UserReviewMovieDTO;
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.models.Movie;
@@ -16,7 +15,6 @@ import java.util.List;
 public class UserReviewMovieService {
 
     private final UserReviewMovieRepository repository;
-
     private final UserService userService;
 
     private final MovieService movieService;
@@ -47,7 +45,6 @@ public class UserReviewMovieService {
         User user = userService.findById(newReview.getUserId());
         Movie movie = movieService.findById(newReview.getMovieId());
         UserReviewMovie review = new UserReviewMovie(
-                new UserReviewMoviePK(movie, user),
                 newReview.getTitle(),
                 newReview.getComment(),
                 newReview.getRate()
@@ -70,10 +67,7 @@ public class UserReviewMovieService {
             newReview.setId();
         });
     } */
-
-    public void deleteReview(UserReviewMoviePK id) {
-        repository.deleteById(id);
-    }
+    //public void deleteReview(Integer id) { repository.deleteById(id);}
 }
 
 

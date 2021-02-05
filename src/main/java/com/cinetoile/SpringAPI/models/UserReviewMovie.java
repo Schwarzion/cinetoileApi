@@ -17,8 +17,20 @@ import java.util.Objects;
 @Table(name = "User_Review_Movie", schema = "cinetoile", catalog = "")
 @NoArgsConstructor
 public class UserReviewMovie {
-    @EmbeddedId
-    private UserReviewMoviePK id;
+    @Id
+    @Column(name = "id", nullable = false, updatable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+
+    @Id
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "movieId", nullable = false)
+    private int movieId;
+
+    @Id
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "userId", nullable = false)
+    private int userId;
 
     @Basic
     @Column(name = "title", nullable = false, length = 45)
@@ -42,8 +54,7 @@ public class UserReviewMovie {
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
 
-    public UserReviewMovie(UserReviewMoviePK id, String title, String comment, int rate) {
-        this.id = id;
+    public UserReviewMovie( String title, String comment, int rate) {
         this.title = title;
         this.comment = comment;
         this.rate = rate;

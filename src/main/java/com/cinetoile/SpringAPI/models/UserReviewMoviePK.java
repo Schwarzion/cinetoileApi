@@ -24,5 +24,4 @@ public class UserReviewMoviePK implements Serializable {
         this.movie = movie;
         this.user = user;
     }
-
 }
