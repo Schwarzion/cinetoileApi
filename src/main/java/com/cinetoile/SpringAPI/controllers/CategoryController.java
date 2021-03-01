@@ -40,11 +40,4 @@ public class CategoryController {
     void delete(@PathVariable Integer id) {
         this.categoryService.delete(id);
     }
-
-    @GetMapping("/movies/category/{movieId}")
-    List<Movie> getMovieCategories(@PathVariable Integer movieId) {
-        Category category =  this.categoryService.find(movieId);
-        System.out.println("trying to get categories");
-        return category.getMovies();
-    }
 }
