@@ -51,16 +51,4 @@ public class Category {
     public int hashCode() {
         return Objects.hash(id, name);
     }
-
-    //Relations
-    @ManyToMany(mappedBy = "categories")
-    List<Movie> movies;
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setPosts(List<Movie> movies) {
-        this.movies = movies;
-    }
 }

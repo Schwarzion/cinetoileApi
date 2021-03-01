@@ -24,7 +24,6 @@ public class CategoryService {
     }
 
     public Category update(Category newCategory, Integer id) {
-        System.out.println(id);
         return repository.findById(id).map(category -> {
             category.setName(newCategory.getName());
             return repository.save(category);
