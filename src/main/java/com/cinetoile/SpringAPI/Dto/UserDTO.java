@@ -1,5 +1,7 @@
 package com.cinetoile.SpringAPI.Dto;
 
+import org.hibernate.type.BlobType;
+
 import java.sql.Timestamp;
 
 public class UserDTO {
@@ -12,6 +14,7 @@ public class UserDTO {
     private String phone;
     private String mail;
     private String password;
+    private BlobType image;
 
     public String getFirstname() {
         return firstname;
@@ -75,5 +78,13 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public BlobType getImage() {
+        return image;
+    }
+
+    public void setImage(BlobType image) {
+        this.image = image;
     }
 }

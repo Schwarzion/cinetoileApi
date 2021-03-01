@@ -1,9 +1,12 @@
 package com.cinetoile.SpringAPI.controllers;
 
+import com.cinetoile.SpringAPI.Dto.UserDTO;
 import com.cinetoile.SpringAPI.models.User;
 import com.cinetoile.SpringAPI.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -12,10 +15,12 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    UserController(UserService userService) {
+    public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @GetMapping("/users")
@@ -41,6 +46,12 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     void delete(@PathVariable Integer id) {
         this.userService.delete(id);
+    }
+
+    @PostMapping("/sign-up")
+    public void signUp(@RequestBody User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        this.userService.add(user);
     }
 
 }

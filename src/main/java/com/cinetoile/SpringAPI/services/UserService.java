@@ -3,6 +3,8 @@ package com.cinetoile.SpringAPI.services;
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.models.User;
 import com.cinetoile.SpringAPI.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,13 +13,22 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository repository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
-    UserService(UserRepository repository) { this.repository = repository;}
+    UserService(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.repository = repository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     public List<User> findAll() { return repository.findAll();}
 
     public User findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("user", id));
+    }
+
+    public UserDetails findByMail(String mail) {
+        return userDetailsServiceImpl.loadUserByUsername(mail);
     }
 
     public User add(User newUser) { return repository.save(newUser);}

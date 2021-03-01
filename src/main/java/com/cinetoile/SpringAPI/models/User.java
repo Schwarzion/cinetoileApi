@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.hibernate.type.BlobType;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -95,7 +94,8 @@ public class User {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus() {
+        int status = 1;
         this.status = status;
     }
 
