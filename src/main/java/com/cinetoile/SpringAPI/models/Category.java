@@ -3,6 +3,7 @@ package com.cinetoile.SpringAPI.models;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -49,5 +50,17 @@ public class Category {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    //Relations
+    @ManyToMany(mappedBy = "categories")
+    List<Movie> movies;
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setPosts(List<Movie> movies) {
+        this.movies = movies;
     }
 }

@@ -4,7 +4,6 @@ import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.models.Category;
 import com.cinetoile.SpringAPI.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
@@ -25,6 +24,7 @@ public class CategoryService {
     }
 
     public Category update(Category newCategory, Integer id) {
+        System.out.println(id);
         return repository.findById(id).map(category -> {
             category.setName(newCategory.getName());
             return repository.save(category);
@@ -33,6 +33,7 @@ public class CategoryService {
             return repository.save(newCategory);
         });
     }
+
     public void delete(Integer id) {
         repository.deleteById(id);
     }
