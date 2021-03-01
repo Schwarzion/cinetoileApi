@@ -8,8 +8,9 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Table(name="Movie")
 public class Movie {
-    private int id;
+    private @Id @GeneratedValue int id;
     private String name;
     private String description;
     private String duration;
@@ -24,6 +25,26 @@ public class Movie {
     private String country;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+
+    public Movie() {}
+
+    public Movie(String name, String description, String duration, String tmdbKey, String comment, Integer rate, byte[] image, Timestamp launchDate, String director, String casting, Integer advisedAge, String country, Timestamp createdAt, Timestamp updatedAt) {
+        this.name = name;
+        this.description = description;
+        this.duration = duration;
+        this.tmdbKey = tmdbKey;
+        this.comment = comment;
+        this.rate = rate;
+        this.image = image;
+        this.launchDate = launchDate;
+        this.director = director;
+        this.casting = casting;
+        this.advisedAge = advisedAge;
+        this.country = country;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -210,4 +231,12 @@ public class Movie {
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "id"))
     List<Category> categories;
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setPosts(List<Category> categories) {
+        this.categories = categories;
+    }
 }
