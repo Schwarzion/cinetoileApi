@@ -2,10 +2,7 @@ package com.cinetoile.SpringAPI.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="Movie")
@@ -224,4 +221,11 @@ public class Movie {
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "Movie_Category",
+            joinColumns = {@JoinColumn(name = "movieId")},
+            inverseJoinColumns = {@JoinColumn(name = "categoryId")})
+    Set<Category> movieCategories;
 }

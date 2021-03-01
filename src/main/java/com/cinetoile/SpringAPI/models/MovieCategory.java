@@ -10,6 +10,16 @@ public class MovieCategory {
     private int movieId;
     private int categoryId;
 
+    @ManyToOne
+    @MapsId("movieId")
+    @JoinColumn(name = "movieId")
+    private Movie movie;
+
+    @ManyToOne
+    @MapsId("categoryId")
+    @JoinColumn(name = "categoryId")
+    private Category category;
+
     @Id
     @Column(name = "movieId", nullable = false)
     public int getMovieId() {

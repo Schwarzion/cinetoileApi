@@ -3,8 +3,10 @@ package com.cinetoile.SpringAPI.models;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="Category")
@@ -51,4 +53,7 @@ public class Category {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
+    @ManyToMany(mappedBy = "movieCategories")
+    public Set<Movie> categoryMovies;
 }

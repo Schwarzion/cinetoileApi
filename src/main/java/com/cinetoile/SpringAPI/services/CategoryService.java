@@ -2,11 +2,13 @@ package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.models.Category;
+import com.cinetoile.SpringAPI.models.Movie;
 import com.cinetoile.SpringAPI.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CategoryService {
@@ -36,5 +38,6 @@ public class CategoryService {
     public void delete(Integer id) {
         repository.deleteById(id);
     }
+
 }
 
