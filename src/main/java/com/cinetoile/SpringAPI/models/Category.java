@@ -3,10 +3,8 @@ package com.cinetoile.SpringAPI.models;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name="Category")
@@ -58,4 +56,11 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     List<Movie> movies;
 
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setPosts(List<Movie> movies) {
+        this.movies = movies;
+    }
 }
