@@ -224,19 +224,4 @@ public class Movie {
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
-
-    //Relations
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "category",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id"))
-    List<Category> categories;
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setPosts(List<Category> categories) {
-        this.categories = categories;
-    }
 }
