@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,6 +18,12 @@ public class Category {
     public Category(String name){
         this.name = name;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "Movie_Category",
+            joinColumns = @JoinColumn(name = "categoryId"),
+            inverseJoinColumns = @JoinColumn(name = "movieId"))
+    private Set<Movie> movies = new HashSet<>();
 
     @Id
     @Column(name = "id", nullable = false)
@@ -54,6 +59,11 @@ public class Category {
         return Objects.hash(id, name);
     }
 
-    @ManyToMany(mappedBy = "movieCategories")
-    public Set<Movie> categoryMovies;
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
+    }
 }
