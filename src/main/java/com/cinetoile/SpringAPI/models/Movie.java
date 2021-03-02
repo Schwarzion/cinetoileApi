@@ -1,12 +1,21 @@
 package com.cinetoile.SpringAPI.models;
 
+<<<<<<< HEAD
+=======
+import lombok.AllArgsConstructor;
+>>>>>>> 7e1ca3d... feat: add user movie review crud, entity, repository, controller and service
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
+<<<<<<< HEAD
 
 import java.util.*;
 
+=======
+import java.util.Date;
+import java.util.List;
+>>>>>>> 7e1ca3d... feat: add user movie review crud, entity, repository, controller and service
 
 @Entity
 @Data
@@ -16,7 +25,11 @@ public class Movie {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+<<<<<<< HEAD
     private Integer id;
+=======
+    private int id;
+>>>>>>> 7e1ca3d... feat: add user movie review crud, entity, repository, controller and service
     @Basic
     @Column(name = "name", nullable = false, length = 120)
     private String name;
@@ -59,6 +72,37 @@ public class Movie {
     @Basic
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
+<<<<<<< HEAD
+=======
+
+    public Movie(
+            String name,
+            String description,
+            String duration,
+            String tmdbKey,
+            String comment,
+            int rate,
+            Timestamp launchDate,
+            String director,
+            String casting,
+            int advisedAge,
+            String country
+    ) {
+        this.name = name;
+        this.description = description;
+        this.duration = duration;
+        this.tmdbKey = tmdbKey;
+        this.comment = comment;
+        this.rate = rate;
+        this.launchDate = launchDate;
+        this.director = director;
+        this.casting = casting;
+        this.advisedAge = advisedAge;
+        this.country = country;
+        this.createdAt = new Timestamp(new Date().getTime());
+        this.updatedAt = new Timestamp(new Date().getTime());
+    }
+>>>>>>> 7e1ca3d... feat: add user movie review crud, entity, repository, controller and service
 
     @OneToMany(mappedBy = "id.movie", targetEntity = UserReviewMovie.class, fetch = FetchType.EAGER)
     public List<UserReviewMovie> userReviewMovies;

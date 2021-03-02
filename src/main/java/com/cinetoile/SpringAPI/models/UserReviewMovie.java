@@ -31,7 +31,6 @@ public class UserReviewMovie {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "userId", nullable = false)
     private int userId;
-
     @Basic
     @Column(name = "title", nullable = false, length = 45)
     private String title;

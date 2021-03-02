@@ -59,11 +59,31 @@ public class User {
     @Basic
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
-    @Basic
-    @Column(name="theaterId", nullable = true)
-    private Integer theaterId;
+
+    public User(
+            String firstname,
+            String lastname,
+            String city,
+            String postalCode,
+            Timestamp birthdate,
+            int status,
+            String phone,
+            String mail,
+            String password
+    ) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.birthdate = birthdate;
+        this.status = status;
+        this.phone = phone;
+        this.mail = mail;
+        this.password = password;
+    }
+
 
     @OneToMany(mappedBy = "id.user", targetEntity = UserReviewMovie.class,
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<UserReviewMovie> moviesReviewed;
 }

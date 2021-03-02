@@ -19,6 +19,7 @@ public class CategoryService {
 
     public CategoryEntity find(Integer id) { return repository.findById(id).orElseThrow(() -> new NotFoundException("category ", id.toString())); }
 
+
     public CategoryEntity add(CategoryEntity newCategory) {
         return repository.save(newCategory);
     }
