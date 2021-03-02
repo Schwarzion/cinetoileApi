@@ -17,7 +17,7 @@ public class CategoryService {
 
     public List<Category> findAll() { return repository.findAll();}
 
-    public Category find(Integer id) { return repository.findById(id).orElseThrow(() -> new NotFoundException("reservation ", id)); }
+    public Category find(Integer id) { return repository.findById(id).orElseThrow(() -> new NotFoundException("reservation ", id.toString())); }
 
     public Category add(Category newCategory) {
         return repository.save(newCategory);

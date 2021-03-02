@@ -17,7 +17,7 @@ public class UserService {
     public List<User> findAll() { return repository.findAll();}
 
     public User findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new NotFoundException("user", id));
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("user", id.toString()));
     }
 
     public User add(User newUser) { return repository.save(newUser);}
