@@ -142,12 +142,6 @@ public class Theater {
         this.updatedAt = updatedAt;
     }
 
-    @Id
-    @Column(name = "adminId", nullable = false)
-    public int getAdminId() {
-        return adminId;
-    }
-
     public void setAdminId(int adminId) {
         this.adminId = adminId;
     }

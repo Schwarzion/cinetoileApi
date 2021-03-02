@@ -59,7 +59,9 @@ public class User {
     @Basic
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
-
+    @Basic
+    @Column(name="theaterId", nullable = true)
+    private Integer theaterId;
 
     @OneToMany(mappedBy = "id.user", targetEntity = UserReviewMovie.class,
             cascade = CascadeType.ALL, fetch = FetchType.EAGER)
