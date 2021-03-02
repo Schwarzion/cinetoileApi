@@ -221,11 +221,4 @@ public class Movie {
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
-
-    @ManyToMany
-    @JoinTable(
-            name = "Movie_Category",
-            joinColumns = {@JoinColumn(name = "movieId")},
-            inverseJoinColumns = {@JoinColumn(name = "categoryId")})
-    Set<Category> movieCategories;
 }
