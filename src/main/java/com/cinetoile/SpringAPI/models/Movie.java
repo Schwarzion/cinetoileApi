@@ -5,10 +5,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.List;
 =======
 import java.util.*;
 >>>>>>> f62b724 (trying to make relationship)
+=======
+import java.util.*;
+>>>>>>> 78fd3b4b26cc2f6ba67334e0db96c4e76f28cf51
 
 @Entity
 @Data
