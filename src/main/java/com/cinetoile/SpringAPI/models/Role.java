@@ -4,10 +4,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
-@Table(name="Role")
+@Table(name="Role", schema = "cinetoile2")
 @NoArgsConstructor
 public class Role {
     @Id
@@ -22,4 +23,8 @@ public class Role {
     @Basic
     @Column(name = "description", nullable = false)
     private String description;
+
+    @OneToMany(mappedBy = "id.user", targetEntity = UserRole.class,
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public List<UserRole> userRoles;
 }

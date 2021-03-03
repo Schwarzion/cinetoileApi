@@ -64,7 +64,11 @@ public class User {
     private Integer theaterId;
 
     @OneToMany(mappedBy = "id.user", targetEntity = UserReviewMovie.class,
-            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<UserReviewMovie> moviesReviewed;
+
+    @OneToMany(mappedBy = "id.user", targetEntity = UserRole.class,
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<UserRole> userRoles;
 
 }

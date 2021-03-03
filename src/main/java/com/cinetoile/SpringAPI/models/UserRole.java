@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name="user_role")
+@Table(name="User_Role", schema = "cinetoile2")
 @NoArgsConstructor
 public class UserRole {
     @EmbeddedId
