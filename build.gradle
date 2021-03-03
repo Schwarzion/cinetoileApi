@@ -24,6 +24,7 @@ dependencies {
 	implementation 'me.paulschwarz:spring-dotenv:2.3.0'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'junit:junit:4.12'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.5'
     compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
