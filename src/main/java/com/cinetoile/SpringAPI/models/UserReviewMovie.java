@@ -1,107 +1,53 @@
 package com.cinetoile.SpringAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
+// 👇 Generate getters & setters, toString and equalsAndHashCode methods
+@Data
 @Table(name = "User_Review_Movie", schema = "cinetoile", catalog = "")
-@IdClass(UserReviewMoviePK.class)
+@NoArgsConstructor
 public class UserReviewMovie {
-    private int movieId;
-    private int userId;
-    private String title;
-    private String comment;
-    private int rate;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
-
-    @Id
-    @Column(name = "movieId", nullable = false)
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-
-    @Id
-    @Column(name = "userId", nullable = false)
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+    @EmbeddedId
+    private UserReviewMoviePK id;
 
     @Basic
     @Column(name = "title", nullable = false, length = 45)
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    private String title;
 
     @Basic
     @Column(name = "comment", nullable = false, length = 200)
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+    private String comment;
 
     @Basic
     @Column(name = "rate", nullable = false)
-    public int getRate() {
-        return rate;
-    }
-
-    public void setRate(int rate) {
-        this.rate = rate;
-    }
+    private int rate;
 
     @Basic
+    @JsonIgnore
     @Column(name = "createdAt", nullable = false)
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
+    private Timestamp createdAt;
 
     @Basic
+    @JsonIgnore
     @Column(name = "updatedAt", nullable = false)
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
+    private Timestamp updatedAt;
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserReviewMovie that = (UserReviewMovie) o;
-        return movieId == that.movieId &&
-                userId == that.userId &&
-                rate == that.rate &&
-                Objects.equals(title, that.title) &&
-                Objects.equals(comment, that.comment) &&
-                Objects.equals(createdAt, that.createdAt) &&
-                Objects.equals(updatedAt, that.updatedAt);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(movieId, userId, title, comment, rate, createdAt, updatedAt);
+    public UserReviewMovie(UserReviewMoviePK id, String title, String comment, int rate) {
+        this.id = id;
+        this.title = title;
+        this.comment = comment;
+        this.rate = rate;
+        this.createdAt = new Timestamp(new Date().getTime());
+        this.updatedAt = new Timestamp(new Date().getTime());
     }
 }

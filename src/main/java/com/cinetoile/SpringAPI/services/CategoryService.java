@@ -17,14 +17,13 @@ public class CategoryService {
 
     public List<Category> findAll() { return repository.findAll();}
 
-    public Category find(Integer id) { return repository.findById(id).orElseThrow(() -> new NotFoundException("reservation ", id)); }
+    public Category find(Integer id) { return repository.findById(id).orElseThrow(() -> new NotFoundException("category ", id.toString())); }
 
     public Category add(Category newCategory) {
         return repository.save(newCategory);
     }
 
     public Category update(Category newCategory, Integer id) {
-        System.out.println(id);
         return repository.findById(id).map(category -> {
             category.setName(newCategory.getName());
             return repository.save(category);

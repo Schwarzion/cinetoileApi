@@ -19,7 +19,7 @@ public class MovieService {
     public List<Movie> findAll() { return repository.findAll();}
 
     public Movie findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new NotFoundException("movie", id));
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("movie", id.toString()));
     }
 
     public Movie add(Movie newMovie) { return repository.save(newMovie);}
