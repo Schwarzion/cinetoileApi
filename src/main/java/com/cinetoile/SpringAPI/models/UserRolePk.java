@@ -17,13 +17,12 @@ public class UserRolePk implements Serializable {
     @JoinColumn(table="User", name = "userId", nullable = false, insertable = false, updatable = false)
     private User user;
 
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(table ="Role" ,name="roleId", nullable = false, insertable = false, updatable = false)
     private Role role;
 
-    public UserRolePk(User user, Role role) {
+    /*public UserRolePk(User user, Role role) {
         this.user = user;
         this.role = role;
-    }
+    }*/
 }
