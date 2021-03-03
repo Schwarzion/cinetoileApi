@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -39,5 +40,11 @@ public class CategoryController {
     @DeleteMapping("/category/{id}")
     void delete(@PathVariable Integer id) {
         this.categoryService.delete(id);
+    }
+
+    @GetMapping("/category/movie/{id}")
+    Set<Movie> movies(@PathVariable Integer id) {
+        Category cat = this.one(id);
+        return cat.getMovies();
     }
 }
