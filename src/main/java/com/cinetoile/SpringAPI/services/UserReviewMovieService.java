@@ -1,7 +1,7 @@
 package com.cinetoile.SpringAPI.services;
 
 
-import com.cinetoile.SpringAPI.Dto.UserReviewMovieDTO;
+import com.cinetoile.SpringAPI.DtoThatWillBeMoved.UserReviewMovieDTO;
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.models.Movie;
 import com.cinetoile.SpringAPI.models.User;

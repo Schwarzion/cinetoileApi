@@ -45,6 +45,8 @@ public class CategoryController {
     @GetMapping("/category/movie/{id}")
     Set<Movie> movies(@PathVariable Integer id) {
         Category cat = this.one(id);
+
+
         return cat.getMovies();
     }
 }

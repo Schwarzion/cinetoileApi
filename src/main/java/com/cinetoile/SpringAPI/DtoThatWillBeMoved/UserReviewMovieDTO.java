@@ -1,4 +1,4 @@
-package com.cinetoile.SpringAPI.Dto;
+package com.cinetoile.SpringAPI.DtoThatWillBeMoved;
 
 
 import lombok.Data;
