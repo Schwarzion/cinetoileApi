@@ -5,12 +5,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.Objects;
 
 @Entity
 @Data
 @Table(name="Theater")
-public class Theater {
+public class TheaterEntity {
     @Id
     @Column(name = "id", nullable = false)
     private int id;

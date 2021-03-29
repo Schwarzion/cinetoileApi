@@ -1,6 +1,6 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.models.Category;
+import com.cinetoile.SpringAPI.models.CategoryEntity;
 import com.cinetoile.SpringAPI.models.Movie;
 import com.cinetoile.SpringAPI.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +20,20 @@ public class CategoryController {
     }
 
     @GetMapping("/categories")
-    List<Category> all() { return this.categoryService.findAll(); }
+    List<CategoryEntity> all() { return this.categoryService.findAll(); }
 
     @GetMapping("/category/{id}")
-    Category one(@PathVariable Integer id) {
+    CategoryEntity one(@PathVariable Integer id) {
         return this.categoryService.find(id);
     }
 
     @PostMapping("/category")
-    Category add(@RequestBody Category newCategory) {
+    CategoryEntity add(@RequestBody CategoryEntity newCategory) {
         return this.categoryService.add(newCategory);
     }
 
     @PutMapping("category/{id}")
-    Category update(@RequestBody Category newCategory, @PathVariable Integer id) {
+    CategoryEntity update(@RequestBody CategoryEntity newCategory, @PathVariable Integer id) {
         return this.categoryService.update(newCategory ,id) ;
     }
 
@@ -44,7 +44,7 @@ public class CategoryController {
 
     @GetMapping("/category/movie/{id}")
     Set<Movie> movies(@PathVariable Integer id) {
-        Category cat = this.one(id);
+        CategoryEntity cat = this.one(id);
         return cat.getMovies();
     }
 }

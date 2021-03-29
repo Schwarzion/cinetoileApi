@@ -1,13 +1,11 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.models.Category;
 import com.cinetoile.SpringAPI.models.Movie;
 import com.cinetoile.SpringAPI.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class MovieController {

@@ -1,6 +1,6 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.Dto.UserReviewMovieDTO;
+import com.cinetoile.SpringAPI.DtoThatWillBeMoved.UserReviewMovieDTO;
 import com.cinetoile.SpringAPI.models.UserReviewMovie;
 import com.cinetoile.SpringAPI.services.UserReviewMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
