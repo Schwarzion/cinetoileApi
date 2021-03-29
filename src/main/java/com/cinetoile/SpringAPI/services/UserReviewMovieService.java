@@ -27,11 +27,21 @@ public class UserReviewMovieService {
         this.repository = repository;
     }
 
-    public List<UserReviewMovie> findAll() { return repository.findAll();}
+    public List<UserReviewMovie> findAll() {
+        return repository.findAll();
+    }
 
-    public List<UserReviewMovie> findAllByUserId(int userId) { return repository.findByIdUserId(userId);}
-    public List<UserReviewMovie> findAllByMovieId(int movieId) { return repository.findByIdMovieId(movieId);}
-    public List<UserReviewMovie> findByUserIdMovieId(int userId, int movieId) { return repository.findByIdUserIdAndIdMovieId(userId, movieId);}
+    public List<UserReviewMovie> findAllByUserId(int userId) {
+        return repository.findByIdUserId(userId);
+    }
+
+    public List<UserReviewMovie> findAllByMovieId(int movieId) {
+        return repository.findByIdMovieId(movieId);
+    }
+
+    public List<UserReviewMovie> findByUserIdMovieId(int userId, int movieId) {
+        return repository.findByIdUserIdAndIdMovieId(userId, movieId);
+    }
 
     public UserReviewMovie addReview(UserReviewMovieDTO newReview) {
         User user = userService.findById(newReview.getUserId());
@@ -61,7 +71,9 @@ public class UserReviewMovieService {
         });
     } */
 
-    public void deleteReview(UserReviewMoviePK id) { repository.deleteById(id);}
+    public void deleteReview(UserReviewMoviePK id) {
+        repository.deleteById(id);
+    }
 }
 
 

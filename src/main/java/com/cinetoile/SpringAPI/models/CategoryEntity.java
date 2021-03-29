@@ -9,16 +9,15 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="Category")
 @NoArgsConstructor
-public class Category {
+@Table(name = "Category")
+public class CategoryEntity {
     @Id
-    @Column(name = "id", nullable = false, updatable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
 
     @Basic
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 45)
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY)

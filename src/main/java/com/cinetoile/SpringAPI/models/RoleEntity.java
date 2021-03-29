@@ -2,18 +2,17 @@ package com.cinetoile.SpringAPI.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
-@Table(name="Role", schema = "cinetoile2")
+@Table(name = "Role")
 @NoArgsConstructor
-public class Role {
+public class RoleEntity {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Basic
@@ -24,7 +23,7 @@ public class Role {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "id.user", targetEntity = UserRole.class,
+    /*@OneToMany(mappedBy = "id.user", targetEntity = UserRole.class,
             cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public List<UserRole> userRoles;
+    public List<UserRole> userRoles;*/
 }
