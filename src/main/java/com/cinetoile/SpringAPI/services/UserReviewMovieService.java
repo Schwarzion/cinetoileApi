@@ -1,14 +1,13 @@
 package com.cinetoile.SpringAPI.services;
 import com.cinetoile.SpringAPI.Dto.Out.UserReviewMovieDTOOut;
-import com.cinetoile.SpringAPI.Dto.In.UserReviewMovieDTOIn;
 import com.cinetoile.SpringAPI.NotFoundException;
-import com.cinetoile.SpringAPI.models.Movie;
-import com.cinetoile.SpringAPI.models.User;
-import com.cinetoile.SpringAPI.models.UserReviewMovie;
-import com.cinetoile.SpringAPI.models.UserReviewMoviePK;
+import com.cinetoile.SpringAPI.dto.In.UserReviewMovieDTOIn;
+import com.cinetoile.SpringAPI.models.*;
 import com.cinetoile.SpringAPI.repository.UserReviewMovieRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Id;
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -27,26 +26,32 @@ public class UserReviewMovieService {
         this.repository = repository;
     }
 
-    public List<UserReviewMovie> findAll() {
+    public List<UserReviewMovieEntity> findAll() {
         return repository.findAll();
     }
 
-    public List<UserReviewMovie> findAllByUserId(int userId) {
-        return repository.findByIdUserId(userId);
+    public List<UserReviewMovieEntity> findAllByUserId(int userId) {
+        return repository.findByUserId(userId);
     }
 
-    public List<UserReviewMovie> findAllByMovieId(int movieId) {
-        return repository.findByIdMovieId(movieId);
+    public List<UserReviewMovieEntity> findAllByMovieId(int movieId) {
+        return repository.findByMovieId(movieId);
     }
 
-    public UserReviewMovie findByUserIdMovieId(int userId, int movieId) {
-        return repository.findByIdUserIdAndIdMovieId(userId, movieId);
+    public UserReviewMovieEntity findByUserIdMovieId(int userId, int movieId) {
+        return repository.findByUserIdAndMovieId(userId, movieId);
+    }
+
+    public UserReviewMovieEntity findById(Integer id) {
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("userReviewMovie", id.toString()));
     }
 
     public UserReviewMovieDTOOut addReview(UserReviewMovieDTOIn newReview) {
-        Movie movie = movieService.findById(newReview.getMovieId());
-        User user = userService.findById(newReview.getUserId());
-        UserReviewMovie review = new UserReviewMovie(
+        MovieEntity movie = movieService.findById(newReview.getMovieId());
+        UserEntity user = userService.findById(newReview.getUserId());
+        UserReviewMovieEntity review = new UserReviewMovieEntity(
+                movie,
+                user,
                 newReview.getTitle(),
                 newReview.getComment(),
                 newReview.getRate()
@@ -59,12 +64,8 @@ public class UserReviewMovieService {
         );
     }
 
-    public UserReviewMovie findById(UserReviewMoviePK id) {
-        return repository.findById(id).orElseThrow(() -> new NotFoundException("userReviewMovie", id.toString()));
-    }
-
-    public UserReviewMovie updateReview(UserReviewMovieDTOIn newReview) {
-         UserReviewMovie reviewToUpdate = repository.findByIdUserIdAndIdMovieId(newReview.getUserId(), newReview.getMovieId());
+    public UserReviewMovieEntity updateReview(UserReviewMovieDTOIn newReview) {
+         UserReviewMovieEntity reviewToUpdate = repository.findByUserIdAndMovieId(newReview.getUserId(), newReview.getMovieId());
         if(reviewToUpdate == null) {
             throw(new NotFoundException("userReviewMovie", newReview.toString()));
         } else {
@@ -76,7 +77,11 @@ public class UserReviewMovieService {
         }
     }
 
-    public void deleteReview(int userId, int movieId) { repository.deleteByIdUserIdAndIdMovieId(userId, movieId);}
+    public void deleteReview(Integer id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        }
+    }
 }
 
 

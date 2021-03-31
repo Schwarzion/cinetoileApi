@@ -17,7 +17,7 @@ public class UserEntity {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "firstname", nullable = false, length = 60)
@@ -71,9 +71,31 @@ public class UserEntity {
     @Column(name="theaterId", nullable = true)
     private Integer theaterId;
 
-    @OneToMany(mappedBy = "id.user", targetEntity = UserReviewMovie.class,
+    @OneToMany(mappedBy = "userId", targetEntity = UserReviewMovieEntity.class,
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<UserReviewMovie> moviesReviewed;
+    public List<UserReviewMovieEntity> moviesReviewed;
+
+    public UserEntity(
+            String firstname,
+            String lastname,
+            String city,
+            String postalCode,
+            Timestamp birthdate,
+            int status,
+            String phone,
+            String mail,
+            String password
+    ) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.birthdate = birthdate;
+        this.status = status;
+        this.phone = phone;
+        this.mail = mail;
+        this.password = password;
+    }
 
    /* @OneToMany(mappedBy = "id.user", targetEntity = UserRole.class,
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)

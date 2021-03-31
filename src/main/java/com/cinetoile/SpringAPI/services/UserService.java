@@ -2,6 +2,7 @@ package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.models.User;
+import com.cinetoile.SpringAPI.models.UserEntity;
 import com.cinetoile.SpringAPI.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +15,15 @@ public class UserService {
 
     UserService(UserRepository repository) { this.repository = repository;}
 
-    public List<User> findAll() { return repository.findAll();}
+    public List<UserEntity> findAll() { return repository.findAll();}
 
-    public User findById(Integer id) {
+    public UserEntity findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("user", id.toString()));
     }
 
-    public User add(User newUser) { return repository.save(newUser);}
+    public UserEntity add(UserEntity newUser) { return repository.save(newUser);}
 
-    public User update(User newUser, Integer id) {
+    public UserEntity update(UserEntity newUser, Integer id) {
         return repository.findById(id).map(user -> {
             user.setBirthdate(newUser.getBirthdate());
             user.setFirstname(newUser.getFirstname());

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -73,6 +74,34 @@ public class MovieEntity {
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
 
-    @OneToMany(mappedBy = "id.movie", targetEntity = UserReviewMovie.class, fetch = FetchType.EAGER)
-    public List<UserReviewMovie> userReviewMovies;
+    @OneToMany(mappedBy = "movieId", targetEntity = UserReviewMovieEntity.class, fetch = FetchType.EAGER)
+    public List<UserReviewMovieEntity> userReviewMovies;
+
+    public MovieEntity(
+            String name,
+            String description,
+            String duration,
+            String tmdbKey,
+            String comment,
+            int rate,
+            Timestamp launchDate,
+            String director,
+            String casting,
+            int advisedAge,
+            String country
+    ) {
+        this.name = name;
+        this.description = description;
+        this.duration = duration;
+        this.tmdbKey = tmdbKey;
+        this.comment = comment;
+        this.rate = rate;
+        this.launchDate = launchDate;
+        this.director = director;
+        this.casting = casting;
+        this.advisedAge = advisedAge;
+        this.country = country;
+        this.createdAt = new Timestamp(new Date().getTime());
+        this.updatedAt = new Timestamp(new Date().getTime());
+    }
 }

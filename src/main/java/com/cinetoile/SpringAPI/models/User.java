@@ -81,9 +81,4 @@ public class User {
         this.mail = mail;
         this.password = password;
     }
-
-
-    @OneToMany(mappedBy = "id.user", targetEntity = UserReviewMovie.class,
-            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public List<UserReviewMovie> moviesReviewed;
 }

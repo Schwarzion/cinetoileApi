@@ -1,6 +1,7 @@
 package com.cinetoile.SpringAPI.controllers;
 
 import com.cinetoile.SpringAPI.models.User;
+import com.cinetoile.SpringAPI.models.UserEntity;
 import com.cinetoile.SpringAPI.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,22 +20,22 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    List<User> all() {
+    List<UserEntity> all() {
         return this.userService.findAll();
     }
 
     @GetMapping("/user/{id}")
-    User one(@PathVariable Integer id) {
+    UserEntity one(@PathVariable Integer id) {
         return this.userService.findById(id);
     }
 
     @PostMapping("/user")
-    User add(@RequestBody User newUser) {
+    UserEntity add(@RequestBody UserEntity newUser) {
         return this.userService.add(newUser);
     }
 
     @PutMapping("/user/{id}")
-    User update(@RequestBody User newUser, @PathVariable Integer id) {
+    UserEntity update(@RequestBody UserEntity newUser, @PathVariable Integer id) {
         return this.userService.update(newUser, id);
     }
 

@@ -1,7 +1,6 @@
-package com.cinetoile.SpringAPI.Dto.In;
+package com.cinetoile.SpringAPI.dto.In;
 
 
-import com.cinetoile.SpringAPI.models.UserReviewMovie;
 import lombok.Data;
 
 @Data
