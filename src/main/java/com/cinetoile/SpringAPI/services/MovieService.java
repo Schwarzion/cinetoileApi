@@ -2,6 +2,7 @@ package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.models.Movie;
+import com.cinetoile.SpringAPI.models.MovieEntity;
 import com.cinetoile.SpringAPI.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +17,15 @@ public class MovieService {
         this.repository = repository;
     }
 
-    public List<Movie> findAll() { return repository.findAll();}
+    public List<MovieEntity> findAll() { return repository.findAll();}
 
-    public Movie findById(Integer id) {
+    public MovieEntity findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("movie", id.toString()));
     }
 
-    public Movie add(Movie newMovie) { return repository.save(newMovie);}
+    public MovieEntity add(MovieEntity newMovie) { return repository.save(newMovie);}
 
-    public Movie update(Movie newMovie, Integer id) {
+    public MovieEntity update(MovieEntity newMovie, Integer id) {
         return repository.findById(id).map(movie -> {
             movie.setName(newMovie.getName());
             movie.setDescription(newMovie.getDescription());

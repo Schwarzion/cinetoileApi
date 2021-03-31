@@ -1,6 +1,7 @@
 package com.cinetoile.SpringAPI.controllers;
 
 import com.cinetoile.SpringAPI.models.Movie;
+import com.cinetoile.SpringAPI.models.MovieEntity;
 import com.cinetoile.SpringAPI.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,22 +19,22 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    List<Movie> all() {
+    List<MovieEntity> all() {
         return this.movieService.findAll();
     }
 
     @GetMapping("/movie/{id}")
-    Movie one(@PathVariable Integer id) {
+    MovieEntity one(@PathVariable Integer id) {
         return this.movieService.findById(id);
     }
 
     @PostMapping("/movie/add")
-    Movie add(@RequestBody Movie newMovie) {
+    MovieEntity add(@RequestBody MovieEntity newMovie) {
         return this.movieService.add(newMovie);
     }
 
     @PutMapping("/movie/edit/{id}")
-    Movie update(@RequestBody Movie newUser, @PathVariable Integer id) {
+    MovieEntity update(@RequestBody MovieEntity newUser, @PathVariable Integer id) {
         return this.movieService.update(newUser, id);
     }
 
