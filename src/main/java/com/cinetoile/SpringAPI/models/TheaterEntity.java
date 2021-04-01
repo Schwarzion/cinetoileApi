@@ -1,14 +1,18 @@
 package com.cinetoile.SpringAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 
 @Entity
 @Data
 @Table(name="Theater")
+@NoArgsConstructor
 public class TheaterEntity {
     @Id
     @Column(name = "id", nullable = false)
@@ -52,9 +56,27 @@ public class TheaterEntity {
 
     @Basic
     @Column(name = "createdAt", nullable = false)
+    @JsonIgnore
     private Timestamp createdAt;
 
     @Basic
     @Column(name = "updatedAt", nullable = false)
+    @JsonIgnore
     private Timestamp updatedAt;
+
+    public TheaterEntity(String name, String description, String address, String streetNumber, String city, String postalCode, String phoneNumber, String mail, byte[] image) {
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.streetNumber = streetNumber;
+        this.phoneNumber = phoneNumber;
+        this.mail = mail;
+        this.image = image;
+        this.createdAt = new Timestamp(new Date().getTime());
+        this.updatedAt = new Timestamp(new Date().getTime());
+    }
+
+
 }
