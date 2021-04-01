@@ -1,5 +1,6 @@
 package com.cinetoile.SpringAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,18 +27,20 @@ public class UserReviewTheaterEntity {
     private int rate;
 
     @Basic
+    @JsonIgnore
     @Column(name = "createdAt", nullable = false)
     private Timestamp createdAt;
 
     @Basic
+    @JsonIgnore
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
 
-    @Basic
-    @Column(name = "theaterId", nullable = false)
+    @ManyToOne(targetEntity = TheaterEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name= "theaterId", nullable = false, referencedColumnName = "id")
     private int theaterId;
 
-    @Basic
-    @Column(name = "userId", nullable = false)
+    @ManyToOne(targetEntity = UserEntity.class,fetch = FetchType.LAZY)
+    @JoinColumn(name= "userId", nullable = false, referencedColumnName = "id")
     private int userId;
 }

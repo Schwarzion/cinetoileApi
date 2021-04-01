@@ -1,6 +1,6 @@
 package com.cinetoile.SpringAPI.UserReviewMovie;
 
-import com.cinetoile.SpringAPI.Dto.Out.UserReviewMovieDTOOut;
+import com.cinetoile.SpringAPI.dto.Out.UserReviewMovieDTOOut;
 import com.cinetoile.SpringAPI.dto.In.UserReviewMovieDTOIn;
 import com.cinetoile.SpringAPI.models.*;
 

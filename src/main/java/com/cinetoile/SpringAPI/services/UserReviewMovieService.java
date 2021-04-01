@@ -1,7 +1,8 @@
 package com.cinetoile.SpringAPI.services;
-import com.cinetoile.SpringAPI.Dto.Out.UserReviewMovieDTOOut;
+import com.cinetoile.SpringAPI.dto.Out.UserReviewMovieDTOOut;
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.dto.In.UserReviewMovieDTOIn;
+import com.cinetoile.SpringAPI.dto.Out.UserReviewMovieDTOOut;
 import com.cinetoile.SpringAPI.models.*;
 import com.cinetoile.SpringAPI.repository.UserReviewMovieRepository;
 import org.springframework.stereotype.Service;
