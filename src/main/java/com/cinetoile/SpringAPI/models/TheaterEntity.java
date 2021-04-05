@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -63,6 +64,9 @@ public class TheaterEntity {
     @Column(name = "updatedAt", nullable = false)
     @JsonIgnore
     private Timestamp updatedAt;
+
+    @OneToMany(mappedBy = "theater", targetEntity = RoomEntity.class, fetch = FetchType.EAGER)
+    public List<RoomEntity> theaterRooms;
 
     public TheaterEntity(String name, String description, String address, String streetNumber, String city, String postalCode, String phoneNumber, String mail, byte[] image) {
         this.name = name;

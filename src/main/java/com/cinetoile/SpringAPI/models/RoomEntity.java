@@ -5,15 +5,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "Room", schema = "cinetoile3", catalog = "")
+@Table(name = "Room")
 public class RoomEntity {
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "name", nullable = false, length = 12)
@@ -23,10 +24,9 @@ public class RoomEntity {
     @Column(name = "place", nullable = false)
     private int place;
 
-    @Basic
-    @Column(name = "theaterId", nullable = false)
-    private int theaterId;
-
+    @ManyToOne(targetEntity = TheaterEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "theaterId", nullable = false, referencedColumnName = "id")
+    private TheaterEntity theater;
 
     @Basic
     @Column(name = "createdAt", nullable = false)
@@ -35,4 +35,12 @@ public class RoomEntity {
     @Basic
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
+
+    public RoomEntity(String name, int place, TheaterEntity theater) {
+        this.name = name;
+        this.place = place;
+        this.theater = theater;
+        this.createdAt = new Timestamp(new Date().getTime());
+        this.updatedAt = new Timestamp(new Date().getTime());
+    }
 }
