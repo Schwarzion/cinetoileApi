@@ -1,6 +1,8 @@
 package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
+import com.cinetoile.SpringAPI.dto.In.MovieDTOIn;
+import com.cinetoile.SpringAPI.dto.Out.MovieDTOOut;
 import com.cinetoile.SpringAPI.models.Movie;
 import com.cinetoile.SpringAPI.models.MovieEntity;
 import com.cinetoile.SpringAPI.repository.MovieRepository;
@@ -23,7 +25,39 @@ public class MovieService {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("movie", id.toString()));
     }
 
-    public MovieEntity add(MovieEntity newMovie) { return repository.save(newMovie);}
+    public MovieDTOOut add(MovieDTOIn newMovie) {
+        MovieEntity movie = new MovieEntity(
+                newMovie.getName(),
+                newMovie.getDescription(),
+                newMovie.getDuration(),
+                newMovie.getTmdbKey(),
+                newMovie.getComment(),
+                newMovie.getRate(),
+                newMovie.getImage(),
+                newMovie.getLaunchDate(),
+                newMovie.getDirector(),
+                newMovie.getCasting(),
+                newMovie.getAdvisedAge(),
+                newMovie.getCountry()
+        );
+        repository.save(movie);
+
+        return new MovieDTOOut(
+            movie.getId(),
+            movie.getName(),
+            movie.getDescription(),
+            movie.getDuration(),
+            movie.getTmdbKey(),
+            movie.getComment(),
+            movie.getRate(),
+            movie.getImage(),
+            movie.getLaunchDate(),
+            movie.getDirector(),
+            movie.getCasting(),
+            movie.getAdvisedAge(),
+            movie.getCountry()
+        );
+    }
 
     public MovieEntity update(MovieEntity newMovie, Integer id) {
         return repository.findById(id).map(movie -> {

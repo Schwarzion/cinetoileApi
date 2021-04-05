@@ -1,4 +1,4 @@
-package com.cinetoile.SpringAPI.Dto.Out;
+package com.cinetoile.SpringAPI.dto.Out;
 
 
 import lombok.Data;

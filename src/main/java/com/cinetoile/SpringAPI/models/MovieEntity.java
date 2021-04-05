@@ -1,5 +1,6 @@
 package com.cinetoile.SpringAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,8 +11,8 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "Movie")
+@NoArgsConstructor
 public class MovieEntity {
     @Id
     @Column(name = "id", nullable = false)
@@ -21,56 +22,56 @@ public class MovieEntity {
     @Basic
     @Column(name = "name", nullable = false, length = 120)
     private String name;
-    @Basic
 
+    @Basic
     @Column(name = "description", nullable = true, length = 300)
     private String description;
-    @Basic
 
+    @Basic
     @Column(name = "duration", nullable = false, length = 5)
     private String duration;
-    @Basic
 
+    @Basic
     @Column(name = "tmdbKey", nullable = true, length = 36)
     private String tmdbKey;
-    @Basic
 
+    @Basic
     @Column(name = "comment", nullable = true, length = 300)
     private String comment;
-    @Basic
 
+    @Basic
     @Column(name = "rate", nullable = true)
     private Integer rate;
-    @Basic
 
+    @Basic
     @Column(name = "image", nullable = true)
     private byte[] image;
-    @Basic
 
+    @Basic
     @Column(name = "launchDate", nullable = false)
     private Timestamp launchDate;
-    @Basic
 
+    @Basic
     @Column(name = "director", nullable = false, length = 100)
     private String director;
-    @Basic
 
+    @Basic
     @Column(name = "casting", nullable = false, length = 300)
     private String casting;
-    @Basic
 
+    @Basic
     @Column(name = "advisedAge", nullable = true)
     private Integer advisedAge;
-    @Basic
 
+    @Basic
     @Column(name = "country", nullable = true, length = 100)
     private String country;
-    @Basic
 
+    @Basic
     @Column(name = "createdAt", nullable = false)
     private Timestamp createdAt;
-    @Basic
 
+    @Basic
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
 
@@ -84,6 +85,7 @@ public class MovieEntity {
             String tmdbKey,
             String comment,
             int rate,
+            byte[] image,
             Timestamp launchDate,
             String director,
             String casting,
@@ -96,6 +98,7 @@ public class MovieEntity {
         this.tmdbKey = tmdbKey;
         this.comment = comment;
         this.rate = rate;
+        this.image = image;
         this.launchDate = launchDate;
         this.director = director;
         this.casting = casting;

@@ -1,5 +1,7 @@
 package com.cinetoile.SpringAPI.controllers;
 
+import com.cinetoile.SpringAPI.dto.In.MovieDTOIn;
+import com.cinetoile.SpringAPI.dto.Out.MovieDTOOut;
 import com.cinetoile.SpringAPI.models.Movie;
 import com.cinetoile.SpringAPI.models.MovieEntity;
 import com.cinetoile.SpringAPI.services.MovieService;
@@ -28,14 +30,14 @@ public class MovieController {
         return this.movieService.findById(id);
     }
 
-    @PostMapping("/movie/add")
-    MovieEntity add(@RequestBody MovieEntity newMovie) {
+    @PostMapping("/movie")
+    MovieDTOOut add(@RequestBody MovieDTOIn newMovie) {
         return this.movieService.add(newMovie);
     }
 
-    @PutMapping("/movie/edit/{id}")
-    MovieEntity update(@RequestBody MovieEntity newUser, @PathVariable Integer id) {
-        return this.movieService.update(newUser, id);
+    @PutMapping("/movie/{id}")
+    MovieEntity update(@RequestBody MovieEntity newMovie, @PathVariable Integer id) {
+        return this.movieService.update(newMovie, id);
     }
 
     @DeleteMapping("/movie/{id}")

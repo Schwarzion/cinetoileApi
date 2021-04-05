@@ -1,6 +1,6 @@
 package com.cinetoile.SpringAPI.UserReviewMovie;
 
-import com.cinetoile.SpringAPI.Dto.Out.UserReviewMovieDTOOut;
+import com.cinetoile.SpringAPI.dto.Out.UserReviewMovieDTOOut;
 import com.cinetoile.SpringAPI.dto.In.UserReviewMovieDTOIn;
 import com.cinetoile.SpringAPI.models.*;
 
@@ -44,8 +44,8 @@ public class UserReviewMovieServiceTest {
     @InjectMocks
     UserReviewMovieService service;
 
-    MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
-    MovieEntity fakeMovie2 = new MovieEntity("Forrest Gump", "Un destin incroyable", "120min", "4565394535", "Trop bien", 6, new Timestamp(new Date().getTime()), "Robert Zemeckis", "Tom Hanks", 10, "USA");
+    MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, null,  new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
+    MovieEntity fakeMovie2 = new MovieEntity("Forrest Gump", "Un destin incroyable", "120min", "4565394535", "Trop bien", 6, null, new Timestamp(new Date().getTime()), "Robert Zemeckis", "Tom Hanks", 10, "USA");
     UserEntity fakeUser = new UserEntity("Michel", "McTest", "Lille", "59000", new Timestamp(new Date().getTime()), 1, "0606060606", "MichouMcTesty@gmail.com", "testyEnF0rce" );
 
     UserReviewMovieDTOOut newReviewOut = new UserReviewMovieDTOOut("Pulp Fiction", "test", 10);
