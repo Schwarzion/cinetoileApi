@@ -50,6 +50,7 @@ public class UserReviewMovieEntity {
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
 
+
     public UserReviewMovieEntity(MovieEntity movieId, UserEntity userId, String title, String comment, int rate) {
         this.movieId = movieId;
         this.userId = userId;
