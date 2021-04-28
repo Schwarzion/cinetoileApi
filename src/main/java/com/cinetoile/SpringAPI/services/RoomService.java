@@ -1,15 +1,13 @@
 package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
-import com.cinetoile.SpringAPI.dto.In.RoomDTOIn;
-import com.cinetoile.SpringAPI.dto.Out.RoomDTOOut;
+import com.cinetoile.SpringAPI.dto.dtoIn.RoomDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.RoomDTOOut;
 import com.cinetoile.SpringAPI.models.RoomEntity;
 import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -60,10 +58,8 @@ public class RoomService {
             room.setName(newRoom.getName());
             room.setPlace(newRoom.getPlace());
             room.setTheater(theaterService.findById(newRoom.getTheaterId()));
-            room.setUpdatedAt(new Timestamp(new Date().getTime()));
-
+            //room.setUpdatedAt(new Timestamp(new Date().getTime()));
             return repository.save(room);
         }).orElseThrow(() -> new NotFoundException("Room", id.toString()));
     }
-
 }

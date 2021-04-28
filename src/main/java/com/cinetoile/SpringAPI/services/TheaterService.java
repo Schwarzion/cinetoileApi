@@ -1,7 +1,7 @@
 package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
-import com.cinetoile.SpringAPI.dto.In.TheaterDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoIn.TheaterDTOIn;
 import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.repository.TheaterRepository;
 import org.springframework.stereotype.Service;

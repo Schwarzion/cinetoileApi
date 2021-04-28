@@ -1,10 +1,10 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.dto.In.UserReviewMovieDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoIn.UserReviewMovieDTOIn;
 import com.cinetoile.SpringAPI.models.UserReviewMovieEntity;
 import com.cinetoile.SpringAPI.services.UserReviewMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.cinetoile.SpringAPI.dto.Out.UserReviewMovieDTOOut;
+import com.cinetoile.SpringAPI.dto.dtoOut.UserReviewMovieDTOOut;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

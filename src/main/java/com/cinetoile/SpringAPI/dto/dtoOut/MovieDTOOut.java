@@ -1,12 +1,12 @@
-package com.cinetoile.SpringAPI.dto.In;
+package com.cinetoile.SpringAPI.dto.dtoOut;
 
 import lombok.Data;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data
-public class MovieDTOIn {
+public class MovieDTOOut {
+    private Integer id;
     private String name;
     private String description;
     private String duration;
@@ -20,9 +20,10 @@ public class MovieDTOIn {
     private Integer advisedAge;
     private String country;
 
-    public MovieDTOIn() {};
+    public MovieDTOOut() {};
 
-    public MovieDTOIn(String name, String description, String duration, String tmdbKey, String comment, Integer rate, byte[] image, Timestamp launchDate, String director, String casting, Integer advisedAge, String country){
+    public MovieDTOOut(Integer id, String name, String description, String duration, String tmdbKey, String comment, Integer rate, byte[] image, Timestamp launchDate, String director, String casting, Integer advisedAge, String country){
+        this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;

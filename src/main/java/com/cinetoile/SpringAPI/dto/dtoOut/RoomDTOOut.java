@@ -1,4 +1,4 @@
-package com.cinetoile.SpringAPI.dto.Out;
+package com.cinetoile.SpringAPI.dto.dtoOut;
 
 import com.cinetoile.SpringAPI.models.TheaterEntity;
 import lombok.Data;

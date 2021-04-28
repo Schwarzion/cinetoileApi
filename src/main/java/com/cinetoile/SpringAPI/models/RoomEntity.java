@@ -22,7 +22,7 @@ public class RoomEntity {
 
     @Basic
     @Column(name = "place", nullable = false)
-    private int place;
+    private Integer place;
 
     @ManyToOne(targetEntity = TheaterEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "theaterId", nullable = false, referencedColumnName = "id")

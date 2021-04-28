@@ -12,8 +12,9 @@ import java.sql.Timestamp;
 @Table(name = "Session")
 public class SessionEntity {
     @Id
-    @Column(name = "id", nullable = false)
-    private int id;
+    @Column(name = "id", nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Basic
     @Column(name = "time", nullable = false)
@@ -21,11 +22,7 @@ public class SessionEntity {
 
     @Basic
     @Column(name = "placeLeft", nullable = false)
-    private int placeLeft;
-
-    @Basic
-    @Column(name = "movieId", nullable = false)
-    private int movieId;
+    private Integer placeLeft;
 
     @Basic
     @Column(name = "createdAt", nullable = false)
@@ -35,7 +32,11 @@ public class SessionEntity {
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
 
-    @Basic
-    @Column(name = "roomId", nullable = false)
-    private int roomId;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "movieId", referencedColumnName = "id")
+    private MovieEntity movieId;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "roomId", referencedColumnName = "id")
+    private RoomEntity roomId;
 }
