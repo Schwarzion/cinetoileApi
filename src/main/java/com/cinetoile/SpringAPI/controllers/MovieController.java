@@ -1,8 +1,7 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.dto.In.MovieDTOIn;
-import com.cinetoile.SpringAPI.dto.Out.MovieDTOOut;
-import com.cinetoile.SpringAPI.models.Movie;
+import com.cinetoile.SpringAPI.dto.dtoIn.MovieDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.MovieDTOOut;
 import com.cinetoile.SpringAPI.models.MovieEntity;
 import com.cinetoile.SpringAPI.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;

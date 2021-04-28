@@ -1,7 +1,7 @@
 package com.cinetoile.SpringAPI.Movie;
 
-import com.cinetoile.SpringAPI.dto.In.MovieDTOIn;
-import com.cinetoile.SpringAPI.dto.Out.MovieDTOOut;
+import com.cinetoile.SpringAPI.dto.dtoIn.MovieDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.MovieDTOOut;
 import com.cinetoile.SpringAPI.models.MovieEntity;
 import com.cinetoile.SpringAPI.repository.MovieRepository;
 import com.cinetoile.SpringAPI.services.MovieService;

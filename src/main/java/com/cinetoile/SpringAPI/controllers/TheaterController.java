@@ -1,7 +1,6 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.dto.In.TheaterDTOIn;
-import com.cinetoile.SpringAPI.dto.Out.TheaterDTOOut;
+import com.cinetoile.SpringAPI.dto.dtoIn.TheaterDTOIn;
 import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.services.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;

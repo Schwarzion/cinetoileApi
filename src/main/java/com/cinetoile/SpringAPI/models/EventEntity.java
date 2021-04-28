@@ -14,7 +14,7 @@ public class EventEntity {
 
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "startDate", nullable = false)
@@ -26,7 +26,7 @@ public class EventEntity {
 
     @Basic
     @Column(name = "status", nullable = false)
-    private int status;
+    private Integer status;
 
     @Basic
     @Column(name = "name", nullable = false, length = 100)
@@ -50,5 +50,5 @@ public class EventEntity {
 
     @Basic
     @Column(name = "theaterId", nullable = false)
-    private int theaterId;
+    private Integer theaterId;
 }

@@ -1,9 +1,8 @@
 package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
-import com.cinetoile.SpringAPI.dto.In.MovieDTOIn;
-import com.cinetoile.SpringAPI.dto.Out.MovieDTOOut;
-import com.cinetoile.SpringAPI.models.Movie;
+import com.cinetoile.SpringAPI.dto.dtoIn.MovieDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.MovieDTOOut;
 import com.cinetoile.SpringAPI.models.MovieEntity;
 import com.cinetoile.SpringAPI.repository.MovieRepository;
 import org.springframework.stereotype.Service;

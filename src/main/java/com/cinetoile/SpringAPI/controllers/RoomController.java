@@ -1,10 +1,8 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.dto.In.RoomDTOIn;
-import com.cinetoile.SpringAPI.dto.In.TheaterDTOIn;
-import com.cinetoile.SpringAPI.dto.Out.RoomDTOOut;
+import com.cinetoile.SpringAPI.dto.dtoIn.RoomDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.RoomDTOOut;
 import com.cinetoile.SpringAPI.models.RoomEntity;
-import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

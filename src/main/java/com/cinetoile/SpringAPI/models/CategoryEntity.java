@@ -14,7 +14,7 @@ import java.util.Set;
 public class CategoryEntity {
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "name", nullable = false, length = 45)

@@ -1,6 +1,6 @@
 package com.cinetoile.SpringAPI.Theater;
 
-import com.cinetoile.SpringAPI.dto.In.TheaterDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoIn.TheaterDTOIn;
 import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.repository.TheaterRepository;
 import com.cinetoile.SpringAPI.services.TheaterService;
@@ -15,9 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

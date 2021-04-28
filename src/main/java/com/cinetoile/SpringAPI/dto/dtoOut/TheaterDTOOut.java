@@ -1,10 +1,11 @@
-package com.cinetoile.SpringAPI.dto.In;
+package com.cinetoile.SpringAPI.dto.dtoOut;
 
 import lombok.Data;
 
 @Data
-public class TheaterDTOIn {
+public class TheaterDTOOut {
 
+    private Integer id;
     private String description;
     private String name;
     private String address;
@@ -15,7 +16,8 @@ public class TheaterDTOIn {
     private String mail;
     private byte[] image;
 
-    public TheaterDTOIn(String name, String description, String address, String streetNumber, String city, String postalCode,  String phoneNumber, String mail, byte[] image) {
+    public TheaterDTOOut(Integer id, String description, String name, String address, String city, String postalCode, String streetNumber, String phoneNumber, String mail, byte[] image) {
+        this.id = id;
         this.description = description;
         this.name = name;
         this.address = address;
@@ -26,5 +28,4 @@ public class TheaterDTOIn {
         this.mail = mail;
         this.image = image;
     }
-
 }
