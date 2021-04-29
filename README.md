@@ -22,4 +22,7 @@ To start the server, go in the project root directory and run `./gradlew bootRun
 
 Open the folder with IntelliJ or Eclipse and run the project
 
+## Swagger Documentation
+
+<url>/swagger-ui.html
 
