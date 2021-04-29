@@ -2,6 +2,7 @@ package com.cinetoile.SpringAPI.controllers;
 
 import com.cinetoile.SpringAPI.dto.dtoIn.ReservationDTOIn;
 import com.cinetoile.SpringAPI.dto.dtoOut.ReservationDTOOut;
+import com.cinetoile.SpringAPI.dto.dtoOut.ReservationUserListDTOOut;
 import com.cinetoile.SpringAPI.models.ReservationEntity;
 import com.cinetoile.SpringAPI.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,18 @@ public class ReservationController {
 
     @GetMapping("/reservations")
     List<ReservationDTOOut> all() { return this.reservationService.findAll(); }
+
+    @GetMapping("/reservations/session/{id}")
+    List<ReservationDTOOut> allBySession(@PathVariable Integer id) { return this.reservationService.findAllBySession(id); }
+
+    @GetMapping("/reservations/user/{id}")
+    List<ReservationUserListDTOOut> allByUser(@PathVariable Integer id) { return this.reservationService.findAllByUser(id); }
+
+    @GetMapping("/reservations/passed/user/{id}")
+    List<ReservationUserListDTOOut> allPassedByUser(@PathVariable Integer id) { return this.reservationService.findAllPassedByUser(id); }
+
+    @GetMapping("/reservations/incoming/user/{id}")
+    List<ReservationUserListDTOOut> allIncomingByUser(@PathVariable Integer id) { return this.reservationService.findAllIncomingByUser(id); }
 
     @GetMapping("/reservation/{id}")
     ReservationDTOOut one(@PathVariable Integer id) {
