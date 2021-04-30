@@ -20,13 +20,13 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    List<MovieEntity> all() {
+    List<MovieDTOOut> all() {
         return this.movieService.findAll();
     }
 
     @GetMapping("/movie/{id}")
-    MovieEntity one(@PathVariable Integer id) {
-        return this.movieService.findById(id);
+    MovieDTOOut one(@PathVariable Integer id) {
+        return this.movieService.findDto(id);
     }
 
     @PostMapping("/movie")
@@ -35,7 +35,7 @@ public class MovieController {
     }
 
     @PutMapping("/movie/{id}")
-    MovieEntity update(@RequestBody MovieEntity newMovie, @PathVariable Integer id) {
+    MovieDTOOut update(@RequestBody MovieEntity newMovie, @PathVariable Integer id) {
         return this.movieService.update(newMovie, id);
     }
 
