@@ -19,27 +19,24 @@ public class UserReviewMovieController {
     UserReviewMovieController(UserReviewMovieService reviewService){ this.reviewService = reviewService ;}
 
     @GetMapping("/reviews")
-    List<UserReviewMovieEntity> all(){ return this.reviewService.findAll();}
+    List<UserReviewMovieDTOOut> all(){ return this.reviewService.findAll();}
 
     @GetMapping("/reviews/{userId}")
-    List<UserReviewMovieEntity> userAll(@PathVariable("userId") int userId) { return this.reviewService.findAllByUserId(userId);}
+    List<UserReviewMovieDTOOut> userAll(@PathVariable("userId") int userId) { return this.reviewService.findAllByUserId(userId);}
 
     @GetMapping("/reviews/{movieId}")
-    List<UserReviewMovieEntity> movieAll(@PathVariable("movieId") int movieId){ return this.reviewService.findAllByMovieId(movieId);}
+    List<UserReviewMovieDTOOut> movieAll(@PathVariable("movieId") int movieId){ return this.reviewService.findAllByMovieId(movieId);}
 
     @GetMapping("/reviews/{id}")
     UserReviewMovieEntity findById(@PathVariable("id") Integer id){ return this.reviewService.findById(id);}
 
     @PostMapping("/reviews")
-    @ResponseStatus(HttpStatus.CREATED)
     UserReviewMovieDTOOut addReview(@RequestBody UserReviewMovieDTOIn newReview) { return this.reviewService.addReview(newReview);}
 
     @DeleteMapping("/reviews/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteReview(@PathVariable("id") Integer id ) { this.reviewService.deleteReview(id);}
 
     @PatchMapping("/reviews")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    UserReviewMovieEntity updateReview(@RequestBody UserReviewMovieDTOIn updatedReview) {
+    UserReviewMovieDTOOut updateReview(@RequestBody UserReviewMovieDTOIn updatedReview) {
         return this.reviewService.updateReview(updatedReview);}
 }
