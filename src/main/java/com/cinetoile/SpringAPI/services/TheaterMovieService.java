@@ -11,9 +11,16 @@ import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.models.TheaterMovieEntity;
 import com.cinetoile.SpringAPI.repository.TheaterMovieRepository;
 import org.springframework.stereotype.Service;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,28 +37,41 @@ public class TheaterMovieService {
     }
 
     //ConvertToDTO methods
-    private TheaterMovieDTOOut convertToTheaterMovieDto(TheaterMovieEntity theaterMovie) {
+    private TheaterMovieDTOOut convertToTheaterMovieDto(TheaterMovieEntity theaterMovie) throws IOException {
         return new TheaterMovieDTOOut(
                 theaterMovie.getId(),
                 theaterMovie.getTheater().getId(),
-                theaterMovie.getMovie().getId(),
                 theaterMovie.getStartDate(),
                 theaterMovie.getEndDate(),
                 theaterMovie.getStatus(),
-                theaterMovie.getTheaterFav()
+                theaterMovie.getTheaterFav(),
+                theaterMovie.getMovie().getId(),
+                getFileFromPath(theaterMovie.getMovie().getImage()),
+                theaterMovie.getMovie().getName(),
+                theaterMovie.getMovie().getDuration()
         );
     }
 
     private List<TheaterMovieDTOOut> convertToListTheaterMovieDto(List<TheaterMovieEntity> list) {
         return list.stream()
-                .map(theaterMovie -> new TheaterMovieDTOOut(
-                        theaterMovie.getId(),
-                        theaterMovie.getTheater().getId(),
-                        theaterMovie.getMovie().getId(),
-                        theaterMovie.getStartDate(),
-                        theaterMovie.getEndDate(),
-                        theaterMovie.getStatus(),
-                        theaterMovie.getTheaterFav()))
+                .map(theaterMovie -> {
+                    try {
+                        return new TheaterMovieDTOOut(
+                                theaterMovie.getId(),
+                                theaterMovie.getTheater().getId(),
+                                theaterMovie.getStartDate(),
+                                theaterMovie.getEndDate(),
+                                theaterMovie.getStatus(),
+                                theaterMovie.getTheaterFav(),
+                                theaterMovie.getMovie().getId(),
+                                getFileFromPath(theaterMovie.getMovie().getImage()),
+                                theaterMovie.getMovie().getName(),
+                                theaterMovie.getMovie().getDuration());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -61,7 +81,12 @@ public class TheaterMovieService {
         return convertToListTheaterMovieDto(list);
     }
 
-    public TheaterMovieDTOOut findOne(Integer id) {
+    public List<TheaterMovieDTOOut> findAllEnabled() {
+        List<TheaterMovieEntity> list = repository.findAllEnabled();
+        return convertToListTheaterMovieDto(list);
+    }
+
+    public TheaterMovieDTOOut findOne(Integer id) throws IOException {
         TheaterMovieEntity theaterMovie = repository.findById(id).orElseThrow(() -> new NotFoundException("theaterMovie", id.toString()));
         return convertToTheaterMovieDto(theaterMovie);
     }
@@ -71,18 +96,23 @@ public class TheaterMovieService {
         return convertToListTheaterMovieDto(list);
     }
 
+    public List<TheaterMovieDTOOut> findEnabledByTheaterId(Integer theaterId) {
+        List<TheaterMovieEntity> list = repository.findEnabledByTheaterId(theaterId);
+        return convertToListTheaterMovieDto(list);
+    }
+
     public List<TheaterMovieDTOOut> findByMovieId(Integer movieId) {
         List<TheaterMovieEntity> list = repository.findByMovieId(movieId);
         return convertToListTheaterMovieDto(list);
     }
 
-    public TheaterMovieDTOOut findByTheaterIdMovieId(Integer theaterId, Integer movieId) {
+    public TheaterMovieDTOOut findByTheaterIdMovieId(Integer theaterId, Integer movieId) throws IOException {
         TheaterMovieEntity theaterMovie = repository.findByTheaterIdAndMovieId(theaterId, movieId);
         return convertToTheaterMovieDto(theaterMovie);
     }
 
     //Add method
-    public TheaterMovieDTOOut addTheaterMovie(TheaterMovieDTOIn newTheaterMovie) {
+    public TheaterMovieDTOOut addTheaterMovie(TheaterMovieDTOIn newTheaterMovie) throws IOException {
         MovieEntity movie = movieService.findById(newTheaterMovie.getMovieId());
         TheaterEntity theater = theaterService.findById(newTheaterMovie.getTheaterId());
         TheaterMovieEntity theaterMovie = new TheaterMovieEntity(
@@ -99,7 +129,7 @@ public class TheaterMovieService {
     }
 
     //Update method
-    public TheaterMovieDTOOut updateTheaterMovie(Integer id, TheaterMovieDTOIn newTheaterMovie) {
+    public TheaterMovieDTOOut updateTheaterMovie(Integer id, TheaterMovieDTOIn newTheaterMovie) throws IOException {
         TheaterMovieEntity theaterMovieToUpdate = repository.findById(id).orElseThrow(() -> new NotFoundException("theaterMovie ", id.toString()));
 
         theaterMovieToUpdate.setStartDate(newTheaterMovie.getStartDate());
@@ -118,4 +148,11 @@ public class TheaterMovieService {
             repository.deleteById(id);
         }
     }
+
+    public byte[] getFileFromPath(String imageName) throws IOException {
+        File poster = new File("src/main/resources/uploads/" + imageName);
+        byte[] bytes = Files.readAllBytes(poster.getAbsoluteFile().toPath());
+
+        return bytes;
+    };
 }
