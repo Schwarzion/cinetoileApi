@@ -1,20 +1,33 @@
 package com.cinetoile.SpringAPI.models;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Data
-@NoArgsConstructor
+@EnableJpaAuditing
 @Table(name = "Session")
 public class SessionEntity {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    public SessionEntity() {
+    }
+
+    public SessionEntity(RoomEntity roomId, MovieEntity movieId, Timestamp time) {
+        this.roomId = roomId;
+        this.movieId = movieId;
+        this.time = time;
+        this.placeLeft = roomId.getPlace();
+        this.updatedAt = new Timestamp(new Date().getTime());
+        this.createdAt = new Timestamp(new Date().getTime());
+    }
 
     @Basic
     @Column(name = "time", nullable = false)
