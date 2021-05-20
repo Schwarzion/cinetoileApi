@@ -48,7 +48,6 @@ public class UserReviewMovieServiceTest {
     MovieEntity fakeMovie2 = new MovieEntity("Forrest Gump", "Un destin incroyable", "120min", "4565394535", "Trop bien", 6, null, new Timestamp(new Date().getTime()), "Robert Zemeckis", "Tom Hanks", 10, "USA");
     UserEntity fakeUser = new UserEntity("Michel", "McTest", "Lille", "59000", new Timestamp(new Date().getTime()), 1, "0606060606", "MichouMcTesty@gmail.com", "testyEnF0rce" );
 
-    UserReviewMovieDTOOut newReviewOut = new UserReviewMovieDTOOut("Pulp Fiction", "test", 10);
     UserReviewMovieDTOIn newReviewIn = new UserReviewMovieDTOIn(1,3,"Pas ouf, surcôté", "C'est tout", 3);
     UserReviewMovieEntity fakeReview = new UserReviewMovieEntity(fakeMovie, fakeUser, "Pas ouf, surcôté", "C'est tout", 3);
     UserReviewMovieEntity fakeReview2 = new UserReviewMovieEntity(fakeMovie, fakeUser, "Meh", "C'est tout", 4);
@@ -84,29 +83,29 @@ public class UserReviewMovieServiceTest {
 
     @Test
     public void checkGetReviewsByUserId() {
-        List<UserReviewMovieEntity> userReviews = service.findAllByUserId(1);
+        List<UserReviewMovieDTOOut> userReviews = service.findAllByUserId(1);
 
         Assert.assertEquals("", userReviews.size(), fakeUserReviewsList.size());
     }
 
     @Test
     public void checkGetReviewsByMovieId() {
-        List<UserReviewMovieEntity> movieReviews = service.findAllByMovieId(1);
+        List<UserReviewMovieDTOOut> movieReviews = service.findAllByMovieId(1);
 
         Assert.assertEquals("", movieReviews.size(), fakeMovieReviewsList.size());
     }
 
     @Test
     public void checkGetReviewsByUserIdAndMovieId() {
-        UserReviewMovieEntity userMovieReview = service.findByUserIdMovieId(1, 3);
+        UserReviewMovieDTOOut userMovieReview = service.findByUserIdMovieId(1, 3);
 
         Assert.assertEquals("", userMovieReview.getTitle(), fakeReview.getTitle());
     }
 
     @Test
     public void checkReviewEdition() {
-        UserReviewMovieEntity updatedReviewReceived = new UserReviewMovieEntity(fakeMovie, fakeUser,"Très bien en fait", "je me suis trompé", 7);
-        UserReviewMovieEntity reviewToUpdate = service.findByUserIdMovieId(3, 1);
+        UserReviewMovieDTOIn updatedReviewReceived = new UserReviewMovieDTOIn(1, 3,"Très bien en fait", "je me suis trompé", 7);
+        UserReviewMovieEntity reviewToUpdate = service.findById(1);
 
         reviewToUpdate.setRate(updatedReviewReceived.getRate());
         reviewToUpdate.setTitle(updatedReviewReceived.getTitle());
@@ -114,7 +113,7 @@ public class UserReviewMovieServiceTest {
 
         repository.save(reviewToUpdate);
 
-        UserReviewMovieEntity updatedReview = service.findByUserIdMovieId(3, 1);
+        UserReviewMovieDTOOut updatedReview = service.findByUserIdMovieId(3, 1);
 
         Assert.assertEquals("", updatedReview.getTitle(), updatedReviewReceived.getTitle());
     }
