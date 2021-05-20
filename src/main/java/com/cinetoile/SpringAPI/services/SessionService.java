@@ -2,6 +2,7 @@ package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.dto.dtoIn.SessionDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.ReservationDTOOut;
 import com.cinetoile.SpringAPI.dto.dtoOut.SessionDTOOut;
 import com.cinetoile.SpringAPI.exceptions.BadRequestException;
 import com.cinetoile.SpringAPI.models.MovieEntity;
@@ -10,12 +11,14 @@ import com.cinetoile.SpringAPI.models.SessionEntity;
 import com.cinetoile.SpringAPI.repository.MovieRepository;
 import com.cinetoile.SpringAPI.repository.RoomRepository;
 import com.cinetoile.SpringAPI.repository.SessionRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
