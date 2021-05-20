@@ -2,6 +2,7 @@ package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.dto.dtoIn.TheaterDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.TheaterDTOOut;
 import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.repository.TheaterRepository;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TheaterService {
@@ -16,13 +18,48 @@ public class TheaterService {
 
     TheaterService(TheaterRepository repository) { this.repository = repository; }
 
-    public List<TheaterEntity> findAll() { return repository.findAll(); }
+    private TheaterDTOOut convertToTheaterDto(TheaterEntity theater) {
+        return new TheaterDTOOut(
+                theater.getId(),
+                theater.getDescription(),
+                theater.getName(),
+                theater.getAddress(),
+                theater.getCity(),
+                theater.getPostalCode(),
+                theater.getStreetNumber(),
+                theater.getPhoneNumber(),
+                theater.getMail(),
+                theater.getImage()
+        );
+    }
+
+    private List<TheaterDTOOut> convertToListTheaterDto(List<TheaterEntity> list) {
+        return list.stream().map(theater -> new TheaterDTOOut(
+                theater.getId(),
+                theater.getDescription(),
+                theater.getName(),
+                theater.getAddress(),
+                theater.getCity(),
+                theater.getPostalCode(),
+                theater.getStreetNumber(),
+                theater.getPhoneNumber(),
+                theater.getMail(),
+                theater.getImage()
+        )).collect(Collectors.toList());
+    }
+
+    public List<TheaterDTOOut> findAll() { return convertToListTheaterDto(repository.findAll()); }
 
     public TheaterEntity findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Theater", id.toString()));
     }
 
-    public TheaterEntity add(TheaterDTOIn newTheater) {
+    public TheaterDTOOut findDto(Integer id) {
+        TheaterEntity theater = repository.findById(id).orElseThrow(() -> new NotFoundException("Theater", id.toString()));
+        return convertToTheaterDto(theater);
+    }
+
+    public TheaterDTOOut add(TheaterDTOIn newTheater) {
         TheaterEntity theater = new TheaterEntity(
                 newTheater.getName(),
                 newTheater.getDescription(),
@@ -34,10 +71,11 @@ public class TheaterService {
                 newTheater.getMail(),
                 newTheater.getImage()
         );
-        return repository.save(theater);
+        repository.save(theater);
+        return convertToTheaterDto(theater);
     }
 
-    public TheaterEntity update(TheaterDTOIn newTheater, Integer id) {
+    public TheaterDTOOut update(TheaterDTOIn newTheater, Integer id) {
         return repository.findById(id).map(theater -> {
             theater.setAddress(newTheater.getAddress());
             theater.setDescription(newTheater.getDescription());
@@ -50,7 +88,9 @@ public class TheaterService {
             theater.setMail(newTheater.getMail());
             theater.setUpdatedAt(new Timestamp(new Date().getTime()));
 
-            return repository.save(theater);
+            repository.save(theater);
+
+            return convertToTheaterDto(theater);
         }).orElseThrow(() -> new NotFoundException("Theater", id.toString()));
     }
 

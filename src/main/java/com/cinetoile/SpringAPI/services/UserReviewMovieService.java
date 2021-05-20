@@ -1,4 +1,5 @@
 package com.cinetoile.SpringAPI.services;
+import com.cinetoile.SpringAPI.dto.dtoOut.RoomDTOOut;
 import com.cinetoile.SpringAPI.dto.dtoOut.UserReviewMovieDTOOut;
 import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.dto.dtoIn.UserReviewMovieDTOIn;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserReviewMovieService {
@@ -24,24 +26,50 @@ public class UserReviewMovieService {
         this.repository = repository;
     }
 
-    public List<UserReviewMovieEntity> findAll() {
-        return repository.findAll();
+
+    private UserReviewMovieDTOOut convertToUserReviewMovieDto(UserReviewMovieEntity review) {
+        return new UserReviewMovieDTOOut(
+                review.getTitle(),
+                review.getComment(),
+                review.getMovieId().getName(),
+                review.getUserId().getFirstname(),
+                review.getRate()
+        );
     }
 
-    public List<UserReviewMovieEntity> findAllByUserId(int userId) {
-        return repository.findByUserId(userId);
+    private List<UserReviewMovieDTOOut> convertToListUserReviewMovieDto(List<UserReviewMovieEntity> list) {
+        return list.stream().map(review -> new UserReviewMovieDTOOut(
+                review.getTitle(),
+                review.getComment(),
+                review.getMovieId().getName(),
+                review.getUserId().getFirstname(),
+                review.getRate()
+        )).collect(Collectors.toList());
     }
 
-    public List<UserReviewMovieEntity> findAllByMovieId(int movieId) {
-        return repository.findByMovieId(movieId);
+    public List<UserReviewMovieDTOOut> findAll() {
+        return convertToListUserReviewMovieDto(repository.findAll());
     }
 
-    public UserReviewMovieEntity findByUserIdMovieId(int userId, int movieId) {
-        return repository.findByUserIdAndMovieId(userId, movieId);
+    public List<UserReviewMovieDTOOut> findAllByUserId(int userId) {
+        return convertToListUserReviewMovieDto(repository.findByUserId(userId));
+    }
+
+    public List<UserReviewMovieDTOOut> findAllByMovieId(int movieId) {
+        return convertToListUserReviewMovieDto(repository.findByMovieId(movieId));
+    }
+
+    public UserReviewMovieDTOOut findByUserIdMovieId(int userId, int movieId) {
+        return convertToUserReviewMovieDto(repository.findByUserIdAndMovieId(userId, movieId));
     }
 
     public UserReviewMovieEntity findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("userReviewMovie", id.toString()));
+    }
+
+    public UserReviewMovieDTOOut findDto(Integer id) {
+        UserReviewMovieEntity review = repository.findById(id).orElseThrow(() -> new NotFoundException("userReviewMovie", id.toString()));
+        return convertToUserReviewMovieDto(review);
     }
 
     public UserReviewMovieDTOOut addReview(UserReviewMovieDTOIn newReview) {
@@ -56,13 +84,15 @@ public class UserReviewMovieService {
         );
         repository.save(review);
         return new UserReviewMovieDTOOut(
+                newReview.getTitle(),
+                newReview.getComment(),
                 movie.getName(),
                 user.getFirstname(),
                 newReview.getRate()
         );
     }
 
-    public UserReviewMovieEntity updateReview(UserReviewMovieDTOIn newReview) {
+    public UserReviewMovieDTOOut updateReview(UserReviewMovieDTOIn newReview) {
          UserReviewMovieEntity reviewToUpdate = repository.findByUserIdAndMovieId(newReview.getUserId(), newReview.getMovieId());
         if(reviewToUpdate == null) {
             throw(new NotFoundException("userReviewMovie", newReview.toString()));
@@ -71,7 +101,8 @@ public class UserReviewMovieService {
             reviewToUpdate.setRate(newReview.getRate());
             reviewToUpdate.setTitle(newReview.getTitle());
             reviewToUpdate.setUpdatedAt(new Timestamp(new Date().getTime()));
-            return repository.save(reviewToUpdate);
+            repository.save(reviewToUpdate);
+            return convertToUserReviewMovieDto(reviewToUpdate);
         }
     }
 

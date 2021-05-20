@@ -1,6 +1,7 @@
 package com.cinetoile.SpringAPI.controllers;
 
 import com.cinetoile.SpringAPI.dto.dtoIn.TheaterDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.TheaterDTOOut;
 import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.services.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,24 +21,22 @@ public class TheaterController {
     }
 
     @GetMapping("/theater")
-    List<TheaterEntity> all() {
+    List<TheaterDTOOut> all() {
         return this.theaterService.findAll();
     }
 
     @GetMapping("/theater/{id}")
-    TheaterEntity one(@PathVariable Integer id) {
-        return this.theaterService.findById(id);
+    TheaterDTOOut one(@PathVariable Integer id) {
+        return this.theaterService.findDto(id);
     }
 
     @PostMapping("/theater")
-    @ResponseStatus(HttpStatus.CREATED)
-    TheaterEntity add(@RequestBody TheaterDTOIn newTheater) {
+    TheaterDTOOut add(@RequestBody TheaterDTOIn newTheater) {
         return this.theaterService.add(newTheater);
     }
 
     @PutMapping("/theater/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    TheaterEntity update(@RequestBody TheaterDTOIn newTheater, @PathVariable Integer id) {
+    TheaterDTOOut update(@RequestBody TheaterDTOIn newTheater, @PathVariable Integer id) {
         return this.theaterService.update(newTheater, id);
     }
 

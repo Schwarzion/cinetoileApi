@@ -21,34 +21,31 @@ public class RoomController {
     }
 
     @GetMapping("/room")
-    List<RoomEntity> all() {
+    List<RoomDTOOut> all() {
         return this.roomService.findAll();
     }
 
     @GetMapping("/room/{id}")
-    RoomEntity one(@PathVariable Integer id) {
-        return this.roomService.findById(id);
+    RoomDTOOut one(@PathVariable Integer id) {
+        return this.roomService.findDto(id);
     }
 
     @GetMapping("/room/theater/{theaterId}")
-    List<RoomEntity> allByTheater(@PathVariable Integer theaterId) {
+    List<RoomDTOOut> allByTheater(@PathVariable Integer theaterId) {
         return this.roomService.findByAllTheaterId(theaterId);
     }
 
     @PostMapping("/room/")
-    @ResponseStatus(HttpStatus.CREATED)
     RoomDTOOut add(@RequestBody RoomDTOIn newRoom) {
         return this.roomService.add(newRoom);
     }
 
     @PutMapping("/room/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    RoomEntity update(@RequestBody RoomDTOIn newRoom, @PathVariable Integer id) {
+    RoomDTOOut update(@RequestBody RoomDTOIn newRoom, @PathVariable Integer id) {
         return this.roomService.update(newRoom, id);
     }
 
     @DeleteMapping("/room/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable Integer id) {
         this.roomService.delete(id);
     }
