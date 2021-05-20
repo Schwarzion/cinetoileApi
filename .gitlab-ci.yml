@@ -2,7 +2,7 @@ image: java:8-jdk
 
 stages:
   - build
-#  - deploy
+  - deploy
 # - test
 
 before_script:
