@@ -1,6 +1,7 @@
 package com.cinetoile.SpringAPI.Theater;
 
 import com.cinetoile.SpringAPI.dto.dtoIn.TheaterDTOIn;
+import com.cinetoile.SpringAPI.dto.dtoOut.TheaterDTOOut;
 import com.cinetoile.SpringAPI.models.TheaterEntity;
 import com.cinetoile.SpringAPI.repository.TheaterRepository;
 import com.cinetoile.SpringAPI.services.TheaterService;
@@ -50,14 +51,14 @@ public class TheaterServiceTest {
 
     @Test
     public void testTheaterCreation() {
-        TheaterEntity newTheater = service.add(fakeTheaterIn);
+        TheaterDTOOut newTheater = service.add(fakeTheaterIn);
 
         Assert.assertEquals("", fakeTheaterIn.getName(), newTheater.getName());
     }
 
     @Test
     public void testGetAllTheaters() {
-        List<TheaterEntity> theaterList = service.findAll();
+        List<TheaterDTOOut> theaterList = service.findAll();
         Assert.assertEquals("", theaterList.size(), fakeTheaterList.size());
     }
 
@@ -65,7 +66,7 @@ public class TheaterServiceTest {
     public void testTheaterEdition() {
         TheaterDTOIn updatedTheaterReceived = new TheaterDTOIn("Ciné'croyable", "Incroyable", "Rue legit", "123", "Lille", "59000", "0606060606", "cinema@incroyable.com", null);
 
-        TheaterEntity updatedTheater = service.update(updatedTheaterReceived, 1);
+        TheaterDTOOut updatedTheater = service.update(updatedTheaterReceived, 1);
 
         Assert.assertEquals("", updatedTheater.getAddress(), updatedTheaterReceived.getAddress());
     }

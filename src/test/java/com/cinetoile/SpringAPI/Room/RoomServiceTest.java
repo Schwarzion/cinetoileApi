@@ -59,7 +59,7 @@ public class RoomServiceTest {
 
     @Test
     public void testGetAllRooms() {
-        List<RoomEntity> roomList = service.findAll();
+        List<RoomDTOOut> roomList = service.findAll();
         Assert.assertEquals("", roomList.size(), fakeRoomList.size());
     }
 
@@ -74,9 +74,9 @@ public class RoomServiceTest {
     public void testRoomEdition() {
         RoomDTOIn updatedRoomReceived = new RoomDTOIn("Salle 1", 75, fakeTheater.getId());
 
-        RoomEntity updatedRoom = service.update(updatedRoomReceived, 1);
+        RoomDTOOut updatedRoom = service.update(updatedRoomReceived, 1);
 
-        //Assert.assertEquals("", updatedRoom.getPlace(), updatedRoomReceived.getPlace());
+        Assert.assertEquals("", updatedRoom.getPlace(), updatedRoomReceived.getPlace());
     }
 
 }
