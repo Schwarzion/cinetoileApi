@@ -31,10 +31,10 @@ build:
 #  script:
 #    - ./gradlew check
 
-deploy:
-  stage: deploy
-  script:
-    - ./gradlew bootRun
+#deploy:
+#  stage: deploy
+#  script:
+#    - ./gradlew bootRun
 
 after_script:
   - echo "End CI"
