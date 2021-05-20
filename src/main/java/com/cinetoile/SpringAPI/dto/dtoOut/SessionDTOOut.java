@@ -1,10 +1,12 @@
 package com.cinetoile.SpringAPI.dto.dtoOut;
 
 import lombok.Data;
+
 import java.sql.Timestamp;
 
 @Data
 public class SessionDTOOut {
+    private Integer id;
     private Timestamp time;
     private Integer movieId;
     private Integer roomId;
@@ -13,7 +15,8 @@ public class SessionDTOOut {
     public SessionDTOOut() {
     }
 
-    public SessionDTOOut(Timestamp time, Integer movieId, Integer roomId, Integer placeLeft) {
+    public SessionDTOOut(Integer id, Timestamp time, Integer movieId, Integer roomId, Integer placeLeft) {
+        this.id = id;
         this.time = time;
         this.movieId = movieId;
         this.roomId = roomId;
