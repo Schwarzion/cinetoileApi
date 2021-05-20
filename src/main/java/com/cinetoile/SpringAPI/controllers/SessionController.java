@@ -40,11 +40,11 @@ public class SessionController {
     }
 
     @PutMapping("session/{id}")
-    SessionEntity update(@RequestBody SessionDTOIn newSession, @PathVariable Integer id) {
+    SessionDTOOut update(@RequestBody SessionDTOIn newSession, @PathVariable Integer id) {
         return this.sessionService.update(newSession, id);
     }
 
-    @GetMapping("/session/room/{id}")
+    @GetMapping("/session/{id}/room")
     RoomEntity room(@PathVariable Integer id) {
         SessionEntity session = this.sessionService.find(id);
         return session.getRoomId();
