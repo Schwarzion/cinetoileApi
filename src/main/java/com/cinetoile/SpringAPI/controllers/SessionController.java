@@ -8,6 +8,7 @@ import com.cinetoile.SpringAPI.models.SessionEntity;
 import com.cinetoile.SpringAPI.services.SessionService;
 import com.cinetoile.SpringAPI.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,17 +16,20 @@ import java.util.List;
 @RestController
 public class SessionController {
     private final SessionService sessionService;
-    private final RoomService roomService;
 
     @Autowired
     public SessionController(SessionService sessionService, RoomService roomService) {
         this.sessionService = sessionService;
-        this.roomService = roomService;
     }
 
     @GetMapping("/sessions")
     List<SessionDTOOut> all() {
         return this.sessionService.findAll();
+    }
+
+    @GetMapping("/sessions/movie/{id}")
+    List<SessionDTOOut> allByMovie(@PathVariable Integer id) {
+        return this.sessionService.findByMovie(id);
     }
 
     @GetMapping("/session/{id}")
@@ -34,8 +38,7 @@ public class SessionController {
     }
 
     @PostMapping("/session")
-    SessionEntity add(@RequestBody SessionEntity newSession) {
-        //newSession.setRoom(roomService.find(newSession.getRoom()));
+    SessionDTOOut add(@RequestBody SessionDTOIn newSession) {
         return this.sessionService.add(newSession);
     }
 
@@ -44,9 +47,10 @@ public class SessionController {
         return this.sessionService.update(newSession, id);
     }
 
-    @GetMapping("/session/{id}/room")
-    RoomEntity room(@PathVariable Integer id) {
-        SessionEntity session = this.sessionService.find(id);
-        return session.getRoomId();
+    @PutMapping("session/{id}/place/{update}")
+    SessionDTOOut updatePlace(@PathVariable Integer id, @PathVariable Integer update) {
+        return sessionService.updatePlaceLeft(id, update);
     }
+
+    //Add getAll 1 semaine
 }

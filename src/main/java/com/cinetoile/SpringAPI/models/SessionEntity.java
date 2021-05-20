@@ -45,11 +45,11 @@ public class SessionEntity {
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = MovieEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "movieId", referencedColumnName = "id")
     private MovieEntity movieId;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = RoomEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "roomId", referencedColumnName = "id")
     private RoomEntity roomId;
 }
