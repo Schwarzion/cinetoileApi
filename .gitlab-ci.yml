@@ -8,12 +8,12 @@ stages:
 before_script:
 #  - echo `pwd` # debug
 #  - echo "$CI_BUILD_NAME, $CI_BUILD_REF_NAME $CI_BUILD_STAGE" # debug
-  - export MYSQL_URL=$db
-  - export MYSQL_USERNAME=$user
-  - export MYSQL_PASSWORD=$password
+  - export MYSQL_URL=$DB_URL
+  - export MYSQL_USERNAME=$DB_USER
+  - export MYSQL_PASSWORD=$DB_PASSWORD
   - echo $MYSQL_URL
-  - echo {$db}
-  - echo $db
+  - echo {$DB_URL}
+  - echo $DB_URL
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
 cache:
