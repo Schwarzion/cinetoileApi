@@ -12,7 +12,6 @@ before_script:
 #  - export MYSQL_USERNAME=$user
 #  - export MYSQL_PASSWORD=$password
   - export GRADLE_USER_HOME=`pwd`/.gradle
-  - echo $MYSQL_URL
 
 cache:
   paths:
