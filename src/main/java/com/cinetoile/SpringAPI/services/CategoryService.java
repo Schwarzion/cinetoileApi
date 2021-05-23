@@ -1,10 +1,9 @@
 package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
-import com.cinetoile.SpringAPI.models.Category;
+import com.cinetoile.SpringAPI.models.CategoryEntity;
 import com.cinetoile.SpringAPI.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
@@ -16,15 +15,16 @@ public class CategoryService {
 
     CategoryService(CategoryRepository repository) { this.repository = repository;}
 
-    public List<Category> findAll() { return repository.findAll();}
+    public List<CategoryEntity> findAll() { return repository.findAll();}
 
-    public Category find(Integer id) { return repository.findById(id).orElseThrow(() -> new NotFoundException("reservation ", id)); }
+    public CategoryEntity find(Integer id) { return repository.findById(id).orElseThrow(() -> new NotFoundException("category ", id.toString())); }
 
-    public Category add(Category newCategory) {
+
+    public CategoryEntity add(CategoryEntity newCategory) {
         return repository.save(newCategory);
     }
 
-    public Category update(Category newCategory, Integer id) {
+    public CategoryEntity update(CategoryEntity newCategory, Integer id) {
         return repository.findById(id).map(category -> {
             category.setName(newCategory.getName());
             return repository.save(category);
@@ -33,6 +33,7 @@ public class CategoryService {
             return repository.save(newCategory);
         });
     }
+
     public void delete(Integer id) {
         repository.deleteById(id);
     }

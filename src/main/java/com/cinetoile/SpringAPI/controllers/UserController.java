@@ -1,9 +1,8 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.NotFoundException;
-import com.cinetoile.SpringAPI.models.User;
-import com.cinetoile.SpringAPI.repository.UserRepository;
+import com.cinetoile.SpringAPI.models.UserEntity;
 import com.cinetoile.SpringAPI.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,36 +11,36 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private final UserService service;
+    private final UserService userService;
 
-    UserController(UserRepository repository, UserService service) {
-        this.service = service;
+    @Autowired
+    UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/users")
-    List<User> all() {
-        return service.findAll();
+    List<UserEntity> all() {
+        return this.userService.findAll();
     }
 
-    @PostMapping("/users")
-    User newUser(@RequestBody User newUser) {
-        return service.addUser(newUser);
+    @GetMapping("/user/{id}")
+    UserEntity one(@PathVariable Integer id) {
+        return this.userService.findById(id);
     }
 
-    @GetMapping("/users/{id}")
-    User one(@PathVariable Integer id) {
-        return service.findById(id);
+    @PostMapping("/user")
+    UserEntity add(@RequestBody UserEntity newUser) {
+        return this.userService.add(newUser);
     }
 
-    @PutMapping("/users/{id}")
-    User replaceUser(@RequestBody User newUser, @PathVariable Integer id) {
-
-        return service.replaceUser(newUser, id);
+    @PutMapping("/user/{id}")
+    UserEntity update(@RequestBody UserEntity newUser, @PathVariable Integer id) {
+        return this.userService.update(newUser, id);
     }
 
-    @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable Integer id) {
-        service.deleteUser(id);
+    @DeleteMapping("/user/{id}")
+    void delete(@PathVariable Integer id) {
+        this.userService.delete(id);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
-import com.cinetoile.SpringAPI.models.User;
+import com.cinetoile.SpringAPI.models.UserEntity;
 import com.cinetoile.SpringAPI.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +14,15 @@ public class UserService {
 
     UserService(UserRepository repository) { this.repository = repository;}
 
-    public List<User> findAll() { return repository.findAll();}
+    public List<UserEntity> findAll() { return repository.findAll();}
 
-    public User addUser(User newUser) { return repository.save(newUser);}
-
-    public User findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new NotFoundException("user", id));
+    public UserEntity findById(Integer id) {
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("user", id.toString()));
     }
 
-    public User replaceUser(User newUser, Integer id) {
+    public UserEntity add(UserEntity newUser) { return repository.save(newUser);}
+
+    public UserEntity update(UserEntity newUser, Integer id) {
         return repository.findById(id).map(user -> {
             user.setBirthdate(newUser.getBirthdate());
             user.setFirstname(newUser.getFirstname());
@@ -43,6 +43,6 @@ public class UserService {
         });
     }
 
-    public void deleteUser(Integer id) { repository.deleteById(id);}
+    public void delete(Integer id) { repository.deleteById(id);}
 }
 
