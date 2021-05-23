@@ -1,6 +1,5 @@
 package com.cinetoile.SpringAPI.controllers;
 
-import com.cinetoile.SpringAPI.models.User;
 import com.cinetoile.SpringAPI.models.UserEntity;
 import com.cinetoile.SpringAPI.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
