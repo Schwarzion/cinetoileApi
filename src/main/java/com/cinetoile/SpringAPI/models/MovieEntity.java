@@ -8,7 +8,9 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -46,7 +48,7 @@ public class MovieEntity {
 
     @Basic
     @Column(name = "image", nullable = true)
-    private byte[] image;
+    private String image;
 
     @Basic
     @Column(name = "launchDate", nullable = false)
@@ -86,7 +88,7 @@ public class MovieEntity {
             String tmdbKey,
             String comment,
             int rate,
-            byte[] image,
+            String image,
             Timestamp launchDate,
             String director,
             String casting,

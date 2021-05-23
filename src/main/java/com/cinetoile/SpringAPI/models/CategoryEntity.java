@@ -24,13 +24,13 @@ public class CategoryEntity {
     @JoinTable(	name = "Movie_Category",
             joinColumns = @JoinColumn(name = "categoryId"),
             inverseJoinColumns = @JoinColumn(name = "movieId"))
-    private Set<Movie> movies = new HashSet<>();
+    private Set<MovieEntity> movies = new HashSet<>();
 
-    public Set<Movie> getMovies() {
+    public Set<MovieEntity> getMovies() {
         return movies;
     }
 
-    public void setMovies(Set<Movie> movies) {
+    public void setMovies(Set<MovieEntity> movies) {
         this.movies = movies;
     }
 }

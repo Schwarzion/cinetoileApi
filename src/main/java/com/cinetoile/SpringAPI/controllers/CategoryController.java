@@ -1,7 +1,7 @@
 package com.cinetoile.SpringAPI.controllers;
 
 import com.cinetoile.SpringAPI.models.CategoryEntity;
-import com.cinetoile.SpringAPI.models.Movie;
+import com.cinetoile.SpringAPI.models.MovieEntity;
 import com.cinetoile.SpringAPI.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +43,7 @@ public class CategoryController {
     }
 
     @GetMapping("/category/movie/{id}")
-    Set<Movie> movies(@PathVariable Integer id) {
+    Set<MovieEntity> movies(@PathVariable Integer id) {
         CategoryEntity cat = this.one(id);
         return cat.getMovies();
     }

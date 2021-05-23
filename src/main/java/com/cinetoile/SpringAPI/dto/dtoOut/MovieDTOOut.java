@@ -1,7 +1,9 @@
 package com.cinetoile.SpringAPI.dto.dtoOut;
 
+import com.cinetoile.SpringAPI.models.CategoryEntity;
 import lombok.Data;
 
+import java.awt.*;
 import java.sql.Timestamp;
 
 @Data
