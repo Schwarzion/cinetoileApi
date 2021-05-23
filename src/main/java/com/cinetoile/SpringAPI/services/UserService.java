@@ -1,7 +1,6 @@
 package com.cinetoile.SpringAPI.services;
 
 import com.cinetoile.SpringAPI.NotFoundException;
-import com.cinetoile.SpringAPI.models.User;
 import com.cinetoile.SpringAPI.models.UserEntity;
 import com.cinetoile.SpringAPI.repository.UserRepository;
 import org.springframework.stereotype.Service;
