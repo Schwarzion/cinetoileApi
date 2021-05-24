@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +44,7 @@ public class SessionServiceTest {
     MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, null, new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
     SessionEntity fakeSession = new SessionEntity(fakeRoom, fakeMovie, new Timestamp(new Date().getTime()));
     List<SessionEntity> fakeSessionList = Arrays.asList(fakeSession, fakeSession);
-    SessionDTOIn fakeSessionDTOIn = new SessionDTOIn(new Timestamp(new Date().getTime()), 1, 1);
+    SessionDTOIn fakeSessionDTOIn = new SessionDTOIn(new Timestamp(new Date().getTime()), 1,1);
 
     @Before
     public void setUp() {
@@ -102,7 +103,7 @@ public class SessionServiceTest {
 
     @Test
     public void findByMovieFromDAte() {
-        List<SessionDTOOut> sessions = sessionService.findByMovieFromDAte(1, new Date());
+        List<SessionDTOOut> sessions = sessionService.findByMovieFromDate(1, new Date());
         Assert.assertEquals("", sessions.size(), fakeSessionList.size());
     }
 

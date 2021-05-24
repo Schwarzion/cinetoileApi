@@ -3,6 +3,7 @@ package com.cinetoile.SpringAPI.controllers;
 
 import com.cinetoile.SpringAPI.dto.dtoIn.SessionDTOIn;
 import com.cinetoile.SpringAPI.dto.dtoOut.SessionDTOOut;
+import com.cinetoile.SpringAPI.dto.dtoOut.SessionTheaterDTOOut;
 import com.cinetoile.SpringAPI.models.RoomEntity;
 import com.cinetoile.SpringAPI.models.SessionEntity;
 import com.cinetoile.SpringAPI.services.SessionService;
@@ -35,8 +36,13 @@ public class SessionController {
     }
 
     @GetMapping("/sessions/movie/{id}/date")
-    List<SessionDTOOut> AllByMovieByDAte(@PathVariable Integer id, @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate) {
-        return this.sessionService.findByMovieFromDAte(id, fromDate);
+    List<SessionDTOOut> allByMovieByDAte(@PathVariable Integer id, @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate) {
+        return this.sessionService.findByMovieFromDate(id, fromDate);
+    }
+
+    @GetMapping("/sessions/theater/{id}")
+    List<SessionTheaterDTOOut> allByTheater(@PathVariable Integer id, @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate) {
+        return this.sessionService.findByTheater(id, fromDate);
     }
 
     @GetMapping("/session/{id}")

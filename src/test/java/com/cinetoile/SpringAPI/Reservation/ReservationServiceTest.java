@@ -24,6 +24,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -80,7 +81,6 @@ public class ReservationServiceTest {
         Mockito.when(sessionService.substractSessionPlace(Mockito.any(SessionEntity.class))).thenReturn(fakeSession);
         Mockito.when(sessionService.addSessionPlace(Mockito.any(SessionEntity.class))).thenReturn(fakeSession);
     }
-
 
     @Test
     public void find() {
