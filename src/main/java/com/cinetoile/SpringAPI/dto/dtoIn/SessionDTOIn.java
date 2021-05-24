@@ -1,7 +1,10 @@
 package com.cinetoile.SpringAPI.dto.dtoIn;
 
 import lombok.Data;
+
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 public class SessionDTOIn {

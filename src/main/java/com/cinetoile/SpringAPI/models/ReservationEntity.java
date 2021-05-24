@@ -29,8 +29,6 @@ public class ReservationEntity {
         this.userId = userId;
         this.sessionId = sessionId;
         this.priceId = priceId;
-        this.updatedAt = new Timestamp(new Date().getTime());
-        this.createdAt = new Timestamp(new Date().getTime());
     }
 
     @Basic

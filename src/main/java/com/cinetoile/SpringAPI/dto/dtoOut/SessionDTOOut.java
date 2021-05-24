@@ -3,6 +3,8 @@ package com.cinetoile.SpringAPI.dto.dtoOut;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class SessionDTOOut {

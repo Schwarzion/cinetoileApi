@@ -1,10 +1,12 @@
 package com.cinetoile.SpringAPI.models;
 
+import jdk.vm.ci.meta.Local;
 import lombok.Data;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -25,8 +27,6 @@ public class SessionEntity {
         this.movieId = movieId;
         this.time = time;
         this.placeLeft = roomId.getPlace();
-        this.updatedAt = new Timestamp(new Date().getTime());
-        this.createdAt = new Timestamp(new Date().getTime());
     }
 
     @Basic

@@ -112,6 +112,8 @@ public class ReservationService {
         UserEntity user = userRepository.findById(newReservation.getUserId()).orElseThrow(() -> new NotFoundException("user ", newReservation.getUserId().toString()));
         PricingEntity price = priceRepository.findById(newReservation.getPriceId()).orElseThrow(() -> new NotFoundException("price ", newReservation.getPriceId().toString()));
         ReservationEntity reservation = new ReservationEntity(user, session, price);
+        reservation.setUpdatedAt(new Timestamp(new Date().getTime()));
+        reservation.setCreatedAt(new Timestamp(new Date().getTime()));
         ReservationEntity result = repository.save(reservation);
         sessionService.substractSessionPlace(session);
         return convertToReservationDto(result);
@@ -131,6 +133,7 @@ public class ReservationService {
     public ReservationDTOOut updateStatus(Integer id, Integer status) {
         return repository.findById(id).map(reservation -> {
             reservation.setStatus(status);
+            reservation.setUpdatedAt(new Timestamp(new Date().getTime()));
             reservation = repository.save(reservation);
             sessionService.addSessionPlace(reservation.getSessionId());
             return convertToReservationDto(reservation);
