@@ -16,6 +16,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
@@ -33,12 +36,22 @@ public class MovieServiceTest {
     @InjectMocks
     MovieService service;
 
-    MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, null, new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
-    MovieEntity fakeMovie2 = new MovieEntity("Forrest Gump", "Un destin incroyable", "120min", "4565394535", "Trop bien", 6, null, new Timestamp(new Date().getTime()), "Robert Zemeckis", "Tom Hanks", 10, "USA");
+    MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, "test.jpg", new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
+    MovieEntity fakeMovie2 = new MovieEntity("Forrest Gump", "Un destin incroyable", "120min", "4565394535", "Trop bien", 6, "test.jpg", new Timestamp(new Date().getTime()), "Robert Zemeckis", "Tom Hanks", 10, "USA");
 
-    MovieDTOIn newMovieIn = new MovieDTOIn("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, null,  new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
-    MovieDTOOut newMovieOut = new MovieDTOOut(1, "Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, null, new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
+    MovieDTOIn newMovieIn = new MovieDTOIn("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, "test.jpg",  new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
+    MovieDTOOut newMovieOut = new MovieDTOOut(1, "Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, getFileFromPath("test.jpg"), new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
     List<MovieEntity> fakeMoviesList = Arrays.asList(fakeMovie, fakeMovie2);
+
+    public MovieServiceTest() throws IOException {
+    }
+
+    public byte[] getFileFromPath(String imageName) throws IOException {
+        File poster = new File("src/main/resources/uploads/" + imageName);
+        byte[] bytes = Files.readAllBytes(poster.getAbsoluteFile().toPath());
+
+        return bytes;
+    };
 
     @Before
     public void setUp() {
@@ -53,7 +66,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void checkAddMovie() {
+    public void checkAddMovie() throws IOException {
         MovieDTOOut newMovie = service.add(newMovieIn);
         Assert.assertEquals("", newMovie.getName(), newMovieIn.getName());
 
