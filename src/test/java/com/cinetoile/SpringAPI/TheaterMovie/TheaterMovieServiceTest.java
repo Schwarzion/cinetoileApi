@@ -18,6 +18,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
@@ -41,8 +43,8 @@ public class TheaterMovieServiceTest {
     @InjectMocks
     TheaterMovieService service;
 
-    MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, null,  new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
-    MovieEntity fakeMovie2 = new MovieEntity("Forrest Gump", "Un destin incroyable", "120min", "4565394535", "Trop bien", 6, null, new Timestamp(new Date().getTime()), "Robert Zemeckis", "Tom Hanks", 10, "USA");
+    MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, "test.jpg",  new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
+    MovieEntity fakeMovie2 = new MovieEntity("Forrest Gump", "Un destin incroyable", "120min", "4565394535", "Trop bien", 6, "test.jpg", new Timestamp(new Date().getTime()), "Robert Zemeckis", "Tom Hanks", 10, "USA");
     TheaterEntity fakeTheater = new TheaterEntity("Le magistral", "Petit ciné sympa", "RUE DES PAPILLONS", "16", "LILLE", "59000", "0617998352", "magistral@mail.com", null);
     TheaterEntity fakeTheater2 = new TheaterEntity("Le grand écran", "Gros ciné sympa", "RUE DES FAISANS", "98", "LILLE", "59000", "0617998656", "bigscreen@mail.com", null);
     TheaterMovieEntity fakeTheaterMovie = new TheaterMovieEntity(new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()), true, false, fakeMovie, fakeTheater);
@@ -55,8 +57,8 @@ public class TheaterMovieServiceTest {
     }
 
     @Test
-    public void checkGetOneTheaterMovie() {
+    public void checkGetOneTheaterMovie() throws IOException {
         TheaterMovieDTOOut theaterMovie = service.findOne(1);
-        Assert.assertEquals("", theaterMovie.getId(), fakeTheaterMovie.getId());
+        Assert.assertEquals("", theaterMovie.getStartDate(), fakeTheaterMovie.getStartDate());
     }
 }
