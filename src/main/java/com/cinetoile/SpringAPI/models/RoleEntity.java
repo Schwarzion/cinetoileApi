@@ -1,29 +1,43 @@
 package com.cinetoile.SpringAPI.models;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
 @Table(name = "Role")
-@NoArgsConstructor
 public class RoleEntity {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @Basic
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private ERole name;
 
-    @Basic
-    @Column(name = "description", nullable = false)
-    private String description;
+    public RoleEntity() {
 
-    /*@OneToMany(mappedBy = "id.user", targetEntity = UserRole.class,
-            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public List<UserRole> userRoles;*/
+    }
+
+    public RoleEntity(ERole name) {
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public ERole getName() {
+        return name;
+    }
+
+    public void setName(ERole name) {
+        this.name = name;
+    }
 }

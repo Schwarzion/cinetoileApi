@@ -1,18 +1,18 @@
 package com.cinetoile.SpringAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.type.BlobType;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@Table(name="User")
-@NoArgsConstructor
+@Table(name = "User")
 public class UserEntity {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
@@ -28,76 +28,69 @@ public class UserEntity {
     private String lastname;
 
     @Basic
-    @Column(name = "city", nullable = false, length = 60)
+    @Column(name = "city", nullable = true, length = 60)
     private String city;
 
     @Basic
-    @Column(name = "postalCode", nullable = false, length = 5)
+    @Column(name = "postalCode", nullable = true, length = 5)
     private String postalCode;
 
     @Basic
-    @Column(name = "birthdate", nullable = false)
+    @Column(name = "birthdate", nullable = true)
     private Timestamp birthdate;
 
     @Basic
     @Column(name = "status", nullable = false)
-    private int status;
+    private Integer status;
 
     @Basic
-    @Column(name = "phone", nullable = false, length = 11)
+    @Column(name = "phone", nullable = true, length = 11)
     private String phone;
 
     @Basic
-    @Column(name = "mail", nullable = false, length = 120)
-    private String mail;
+    @Column(name = "username", nullable = false, length = 20)
+    private String username;
+
+    @Basic
+    @Column(name = "email", nullable = false, length = 120)
+    private String email;
 
     @Basic
     @Column(name = "password", nullable = false, length = 64)
     private String password;
 
     @Basic
-    @Column(name = "image", nullable = true)
-    private BlobType image;
+    @Column(name = "image", nullable = true, length = 100)
+    private String image;
 
     @Basic
+    @JsonIgnore
+    @CreationTimestamp
     @Column(name = "createdAt", nullable = false)
     private Timestamp createdAt;
 
     @Basic
+    @JsonIgnore
+    @UpdateTimestamp
     @Column(name = "updatedAt", nullable = false)
     private Timestamp updatedAt;
 
-    @Basic
-    @Column(name="theaterId", nullable = true)
-    private Integer theaterId;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_role",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "roleId", nullable = true))
+    private List<RoleEntity> roles = new ArrayList<RoleEntity>();
 
-    @OneToMany(mappedBy = "userId", targetEntity = UserReviewMovieEntity.class,
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<UserReviewMovieEntity> moviesReviewed;
-
-    public UserEntity(
-            String firstname,
-            String lastname,
-            String city,
-            String postalCode,
-            Timestamp birthdate,
-            int status,
-            String phone,
-            String mail,
-            String password
-    ) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.city = city;
-        this.postalCode = postalCode;
-        this.birthdate = birthdate;
-        this.status = status;
-        this.phone = phone;
-        this.mail = mail;
-        this.password = password;
+    public UserEntity() {
     }
 
-   /* @OneToMany(mappedBy = "id.user", targetEntity = UserRole.class,
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<UserRole> userRoles;*/
+    public UserEntity(String username, String lastname, String firstname, String email, String password,
+                      Integer status) {
+        this.username = username;
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+    }
 }

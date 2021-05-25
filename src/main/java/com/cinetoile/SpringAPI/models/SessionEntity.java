@@ -1,6 +1,5 @@
 package com.cinetoile.SpringAPI.models;
 
-import jdk.vm.ci.meta.Local;
 import lombok.Data;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
