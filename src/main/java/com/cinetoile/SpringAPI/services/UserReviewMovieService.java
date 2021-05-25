@@ -5,8 +5,12 @@ import com.cinetoile.SpringAPI.NotFoundException;
 import com.cinetoile.SpringAPI.dto.dtoIn.UserReviewMovieDTOIn;
 import com.cinetoile.SpringAPI.models.*;
 import com.cinetoile.SpringAPI.repository.UserReviewMovieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;

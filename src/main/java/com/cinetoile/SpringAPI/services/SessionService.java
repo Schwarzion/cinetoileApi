@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SessionService {
+public class SessionService extends AuthenticationFacade {
 
     private final SessionRepository repository;
     private final RoomRepository roomRepository;
@@ -45,6 +45,8 @@ public class SessionService {
      * @return SessionEntity
      */
     public SessionEntity find(Integer id) {
+        UserDetailsImpl userPrincipal = (UserDetailsImpl) getAuthentication().getPrincipal();
+        int currentUserId = userPrincipal.getId();
         return repository.findById(id).orElseThrow(() -> new NotFoundException("session ", id.toString()));
     }
 
