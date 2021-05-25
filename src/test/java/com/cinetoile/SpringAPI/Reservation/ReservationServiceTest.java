@@ -57,8 +57,10 @@ public class ReservationServiceTest {
     PricingEntity fakePricing = new PricingEntity("testPrice", new BigDecimal("42.000"));
     MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, null, new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
     SessionEntity fakeSession = new SessionEntity(fakeRoom, fakeMovie, new Timestamp(new Date().getTime()));
-    UserEntity fakeUser = new UserEntity("Michel", "McTest", "Lille", "59000", new Timestamp(new Date().getTime()), 1, "0606060606", "MichouMcTesty@gmail.com", "testyEnF0rce");
-    UserEntity fakeUser2 = new UserEntity("Michel", "McTest", "Lille", "59000", new Timestamp(new Date().getTime()), 1, "0606060606", "MichouMcTesty@gmail.com", "testyEnF0rce");
+    UserEntity fakeUser = new UserEntity("Michou", "Michel", "McTest","MichouMcTesty@gmail.com", "testyEnF0rce", 1);
+    UserEntity fakeUser2 = new UserEntity("Michou", "Michel", "McTest","MichouMcTesty@gmail.com", "testyEnF0rce", 1);
+
+
     ReservationEntity fakeReservation = new ReservationEntity(fakeUser, fakeSession, fakePricing);
     ReservationEntity fakeReservation2 = new ReservationEntity(fakeUser2, fakeSession, fakePricing);
     List<ReservationEntity> fakeReservationList = Arrays.asList(fakeReservation, fakeReservation, fakeReservation2);

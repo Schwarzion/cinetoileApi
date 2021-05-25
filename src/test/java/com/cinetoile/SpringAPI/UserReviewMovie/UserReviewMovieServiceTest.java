@@ -44,9 +44,10 @@ public class UserReviewMovieServiceTest {
     @InjectMocks
     UserReviewMovieService service;
 
-    MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop", "120min", "4565325", "Trop bien", 10, null,  new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
+    MovieEntity fakeMovie = new MovieEntity("Pulp Fiction", "C'est deux gars qui rentrent dans un coffee shop",
+            "120min", "4565325", "Trop bien", 10, null,  new Timestamp(new Date().getTime()), "Quentin Tarantino", "Bruce Willis, John Travolta", 12, "USA");
     MovieEntity fakeMovie2 = new MovieEntity("Forrest Gump", "Un destin incroyable", "120min", "4565394535", "Trop bien", 6, null, new Timestamp(new Date().getTime()), "Robert Zemeckis", "Tom Hanks", 10, "USA");
-    UserEntity fakeUser = new UserEntity("Michel", "McTest", "Lille", "59000", new Timestamp(new Date().getTime()), 1, "0606060606", "MichouMcTesty@gmail.com", "testyEnF0rce" );
+    UserEntity fakeUser = new UserEntity("Michou", "Michel", "McTest","MichouMcTesty@gmail.com", "testyEnF0rce", 1);
 
     UserReviewMovieDTOIn newReviewIn = new UserReviewMovieDTOIn(1,3,"Pas ouf, surcôté", "C'est tout", 3);
     UserReviewMovieEntity fakeReview = new UserReviewMovieEntity(fakeMovie, fakeUser, "Pas ouf, surcôté", "C'est tout", 3);
