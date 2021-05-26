@@ -28,8 +28,7 @@ public class RoomService {
         return new RoomDTOOut(
                 room.getId(),
                 room.getName(),
-                room.getPlace(),
-                room.getTheater()
+                room.getPlace()
         );
     }
 
@@ -37,8 +36,7 @@ public class RoomService {
         return list.stream().map(room -> new RoomDTOOut(
                 room.getId(),
                 room.getName(),
-                room.getPlace(),
-                room.getTheater()
+                room.getPlace()
         )).collect(Collectors.toList());
     }
 
@@ -66,8 +64,7 @@ public class RoomService {
         return new RoomDTOOut(
                 savedRoom.getId(),
                 savedRoom.getName(),
-                savedRoom.getPlace(),
-                savedRoom.getTheater()
+                savedRoom.getPlace()
         );
     }
 

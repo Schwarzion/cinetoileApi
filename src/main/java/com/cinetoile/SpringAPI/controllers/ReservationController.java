@@ -3,7 +3,6 @@ package com.cinetoile.SpringAPI.controllers;
 import com.cinetoile.SpringAPI.dto.dtoIn.ReservationDTOIn;
 import com.cinetoile.SpringAPI.dto.dtoOut.ReservationDTOOut;
 import com.cinetoile.SpringAPI.dto.dtoOut.ReservationUserListDTOOut;
-import com.cinetoile.SpringAPI.models.ReservationEntity;
 import com.cinetoile.SpringAPI.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

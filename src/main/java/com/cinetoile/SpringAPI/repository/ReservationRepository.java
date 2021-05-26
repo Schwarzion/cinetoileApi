@@ -27,6 +27,6 @@ public interface ReservationRepository extends JpaRepository<ReservationEntity, 
             @Param("sessionTime") Date sessionTime,
             @Param("userId") Integer id);
 
-    @Query(nativeQuery = true, value="SELECT userId, status, id, sessionId, princingId, createdAt, updatedAt FROM Reservation AS res WHERE res.sessionId = 10 and status != 2 ORDER BY status")
-    List<ReservationEntity> findAllBySessionIdOrderByStatus(SessionEntity session);
+    @Query(nativeQuery = true, value="SELECT userId, status, id, sessionId, princingId, createdAt, updatedAt FROM Reservation AS res WHERE res.sessionId = :sessionId and status != 2 ORDER BY status")
+    List<ReservationEntity> findAllBySessionIdOrderByStatus(@Param("sessionId") Integer sessionId);
 }

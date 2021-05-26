@@ -71,7 +71,7 @@ public class ReservationServiceTest {
         Mockito.when(reservationRepository.findById(Mockito.any(Integer.class))).thenReturn(Optional.of(fakeReservation));
         Mockito.when(reservationRepository.findAll()).thenReturn(fakeReservationList);
         Mockito.when(reservationRepository.findAllByUserId(Mockito.any(UserEntity.class))).thenReturn(fakeReservationList);
-        Mockito.when(reservationRepository.findAllBySessionIdOrderByStatus(Mockito.any(SessionEntity.class))).thenReturn(fakeReservationList);
+        Mockito.when(reservationRepository.findAllBySessionIdOrderByStatus(Mockito.any(Integer.class))).thenReturn(fakeReservationList);
         Mockito.when(reservationRepository.findAllIncomingByUser(Mockito.any(Date.class), Mockito.any(Integer.class))).thenReturn(fakeReservationList);
         Mockito.when(reservationRepository.save(Mockito.any(ReservationEntity.class))).thenReturn(fakeReservation);
         Mockito.when(userRepository.findById(Mockito.any(Integer.class))).thenReturn(Optional.of((fakeUser)));
