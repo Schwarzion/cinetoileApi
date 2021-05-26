@@ -150,6 +150,18 @@ public class SessionService {
     }
 
     /**
+     * Delete session
+     *
+     * @param id
+     * @return
+     */
+    public void delete(Integer id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        }
+    }
+
+    /**
      * Handle number update of places in session (add: typeOfUpdate == 1|substract: typeOfUpdate == 2)
      *
      * @param sessionId

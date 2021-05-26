@@ -9,7 +9,6 @@ import com.cinetoile.SpringAPI.models.SessionEntity;
 import com.cinetoile.SpringAPI.services.SessionService;
 import com.cinetoile.SpringAPI.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,6 +62,11 @@ public class SessionController {
     @PutMapping("session/{id}/place/{update}")
     SessionDTOOut updatePlace(@PathVariable Integer id, @PathVariable Integer update) {
         return sessionService.updatePlaceLeft(id, update);
+    }
+
+    @DeleteMapping("/session/{id}")
+    void delete(@PathVariable Integer id) {
+        sessionService.delete(id);
     }
 
     @GetMapping("/session/{id}/room")

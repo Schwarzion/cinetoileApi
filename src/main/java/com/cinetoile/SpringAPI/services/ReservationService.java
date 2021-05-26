@@ -9,6 +9,7 @@ import com.cinetoile.SpringAPI.repository.PricingRepository;
 import com.cinetoile.SpringAPI.repository.ReservationRepository;
 import com.cinetoile.SpringAPI.repository.SessionRepository;
 import com.cinetoile.SpringAPI.repository.UserRepository;
+import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -73,7 +74,8 @@ public class ReservationService {
      * @return List<ReservationDTOOut>
      */
     public List<ReservationDTOOut> findAllBySession(Integer id) {
-        List<ReservationEntity> list = repository.findAllBySessionIdOrderByStatus(sessionRepository.findById(id).orElseThrow(() -> new NotFoundException("session ", id.toString())));
+        SessionEntity session = sessionRepository.findById(id).orElseThrow(() -> new NotFoundException("session ", id.toString()));
+        List<ReservationEntity> list = repository.findAllBySessionIdOrderByStatus(session.getId());
         return list.stream()
                 .map(this::convertToReservationConfirmationDto)
                 .collect(Collectors.toList());
@@ -135,7 +137,9 @@ public class ReservationService {
             reservation.setStatus(status);
             reservation.setUpdatedAt(new Timestamp(new Date().getTime()));
             reservation = repository.save(reservation);
-            sessionService.addSessionPlace(reservation.getSessionId());
+            if (status == 2) {
+                sessionService.addSessionPlace(reservation.getSessionId());
+            }
             return convertToReservationDto(reservation);
         }).orElseThrow(() -> new NotFoundException("session ", id.toString()));
     }
