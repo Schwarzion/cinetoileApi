@@ -23,6 +23,6 @@ public interface SessionRepository extends JpaRepository<SessionEntity, Integer>
             Date end
     );
 
-    @Query("select a from SessionEntity a where a.roomId.theater.id = :theaterId and a.time >= :startDate and a.time <= :endDate")
+    @Query("select a from SessionEntity a where a.roomId.theater.id = :theaterId and a.time >= :startDate and a.time <= :endDate ")
     List<SessionEntity> findByTheaterId(@Param("theaterId") Integer theaterId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }
