@@ -75,7 +75,7 @@ public class ReservationService {
     public List<ReservationDTOOut> findAllBySession(Integer id) {
         List<ReservationEntity> list = repository.findAllBySessionIdOrderByStatus(sessionRepository.findById(id).orElseThrow(() -> new NotFoundException("session ", id.toString())));
         return list.stream()
-                .map(this::convertToReservationDto)
+                .map(this::convertToReservationConfirmationDto)
                 .collect(Collectors.toList());
     }
 
@@ -148,6 +148,16 @@ public class ReservationService {
      */
     private ReservationDTOOut convertToReservationDto(ReservationEntity reservation) {
         return new ReservationDTOOut(reservation.getId(), reservation.getStatus(), reservation.getUserId().getId(), reservation.getSessionId().getId(), reservation.getPriceId().getId());
+    }
+
+    /**
+     * Convert entity to dto
+     *
+     * @param reservation
+     * @return ReservationDTOOut
+     */
+    private ReservationDTOOut convertToReservationConfirmationDto(ReservationEntity reservation) {
+        return new ReservationDTOOut(reservation.getId(), reservation.getStatus(), reservation.getUserId().getId(), reservation.getSessionId().getId(), reservation.getPriceId().getId(), reservation.getUserId().getFirstname(), reservation.getUserId().getLastname());
     }
 
     /**
