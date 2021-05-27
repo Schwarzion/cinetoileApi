@@ -71,7 +71,6 @@ public class ReservationServiceTest {
         Mockito.when(reservationRepository.findById(Mockito.any(Integer.class))).thenReturn(Optional.of(fakeReservation));
         Mockito.when(reservationRepository.findAll()).thenReturn(fakeReservationList);
         Mockito.when(reservationRepository.findAllByUserId(Mockito.any(UserEntity.class))).thenReturn(fakeReservationList);
-        Mockito.when(reservationRepository.findAllBySessionIdOrderByStatus(Mockito.any(Integer.class))).thenReturn(fakeReservationList);
         Mockito.when(reservationRepository.findAllIncomingByUser(Mockito.any(Date.class), Mockito.any(Integer.class))).thenReturn(fakeReservationList);
         Mockito.when(reservationRepository.save(Mockito.any(ReservationEntity.class))).thenReturn(fakeReservation);
         Mockito.when(userRepository.findById(Mockito.any(Integer.class))).thenReturn(Optional.of((fakeUser)));
@@ -79,7 +78,6 @@ public class ReservationServiceTest {
         Mockito.when(sessionRepository.findById(Mockito.any(Integer.class))).thenReturn(Optional.of(fakeSession));
         Mockito.when(sessionRepository.findById(Mockito.any(Integer.class))).thenReturn(Optional.of(fakeSession));
         Mockito.when(sessionService.substractSessionPlace(Mockito.any(SessionEntity.class))).thenReturn(fakeSession);
-        Mockito.when(sessionService.addSessionPlace(Mockito.any(SessionEntity.class))).thenReturn(fakeSession);
     }
 
     @Test
@@ -98,12 +96,6 @@ public class ReservationServiceTest {
     @Test
     public void findAllByUser() {
         List<ReservationUserListDTOOut> reservations = reservationService.findAllByUser(1);
-        Assert.assertEquals("", reservations.size(), fakeReservationList.size());
-    }
-
-    @Test
-    public void findAllBySession() {
-        List<ReservationDTOOut> reservations = reservationService.findAllBySession(1);
         Assert.assertEquals("", reservations.size(), fakeReservationList.size());
     }
 

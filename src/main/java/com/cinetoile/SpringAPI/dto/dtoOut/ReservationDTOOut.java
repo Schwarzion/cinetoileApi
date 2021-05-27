@@ -12,8 +12,6 @@ public class ReservationDTOOut {
     private String name;
     private String lastname;
 
-
-
     public ReservationDTOOut() {
     }
 

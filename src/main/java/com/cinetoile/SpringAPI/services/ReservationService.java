@@ -9,7 +9,6 @@ import com.cinetoile.SpringAPI.repository.PricingRepository;
 import com.cinetoile.SpringAPI.repository.ReservationRepository;
 import com.cinetoile.SpringAPI.repository.SessionRepository;
 import com.cinetoile.SpringAPI.repository.UserRepository;
-import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
